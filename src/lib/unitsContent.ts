@@ -568,12 +568,12 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 2：回答面试问题',
         instruction: '面试官问："Can you tell me about your previous role and what your day-to-day responsibilities were?" 用 STAR 结构回答这个问题，重点说明你的 daily tasks 和一个具体项目或成果。',
-        example: ''
+        example: 'In my previous role as Marketing Intern at ABC Company, I was responsible for content creation, social media management, and campaign performance tracking. Day-to-day, I coordinated with the design team to produce weekly posts and analysed engagement data using Google Analytics. One highlight was leading a six-week email campaign that increased click-through rates by 18%. Through this experience I developed stronger skills in data-driven marketing and cross-functional communication.'
       },
       {
         title: '任务 3：修改 Chinglish 表达',
         instruction: '把以下中文直译改成自然、专业的英文表达：\n1. 我的工作是帮助我的老板。\n2. 我做了很多市场营销的事情。\n3. 我有关于数据分析的经验。\n4. 我在这个公司工作，负责社交媒体。',
-        example: ''
+        example: '1. ✗ My job is to help my boss. → ✓ I supported my manager by coordinating schedules, preparing reports, and following up on action items.\n2. ✗ I did many things in marketing. → ✓ I was responsible for content creation, social media management, and campaign performance tracking.\n3. ✗ I have experience about data analysis. → ✓ I have hands-on experience in data analysis, including using Excel and Python to process large datasets.\n4. ✗ I worked in this company, responsible for social media. → ✓ In my role at XYZ Company, I managed the brand\'s social media presence across three platforms.'
       }
     ],
     saveablePhrases: [
@@ -1578,7 +1578,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 2：回答面试题 "What are your core strengths?"',
         instruction: '录制一段 1 分钟左右的回答，或者写下来。要求：包含一个硬技能和一个软技能，并且每个技能都要配有一个简短的案例（Evidence）。',
-        example: ''
+        example: 'One of my core strengths is attention to detail. For example, while reviewing a quarterly financial report I spotted a data inconsistency that others had missed — catching it early saved the team from presenting inaccurate figures to senior leadership. On the soft-skills side, I\'d say adaptability is my standout quality. When our project scope changed significantly mid-way, I quickly reprioritised my workload and kept us on schedule. Together, these two qualities make me a reliable and flexible contributor in fast-paced environments.'
       },
       {
         title: '任务 3：Transferable Skills 识别',
@@ -2079,12 +2079,12 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 2：撰写 Cover Letter 开头',
         instruction: '针对你心仪的一家公司，写一段 50-80 词的求职信开头。要求：包含职位名、你从哪里看到的、以及一句展示你对该公司"独家调研"的话。',
-        example: ''
+        example: 'I am writing to express my strong interest in the Product Marketing Manager position at TechVision Inc., which I discovered on LinkedIn last week. Having followed TechVision\'s recent launch of your AI-driven analytics platform, I was particularly impressed by how you positioned it not merely as a tool, but as a strategic growth partner for SMEs — a narrative I find both compelling and highly differentiated in today\'s market.'
       },
       {
         title: '任务 3：强力动词替换',
         instruction: '将以下句子中的 "did" 或 "helped" 替换为更专业的强力动词（如 Orchestrated, Spearheaded, Mentored, Streamlined 等）：\n1. I helped with the project organization.\n2. I did the team training last week.\n3. I helped to make the process faster.',
-        example: ''
+        example: '1. ✗ I helped with the project organization. → ✓ I orchestrated the end-to-end project coordination, aligning stakeholders across three departments.\n2. ✗ I did the team training last week. → ✓ I facilitated a hands-on training session for eight team members, covering new workflow tools and best practices.\n3. ✗ I helped to make the process faster. → ✓ I streamlined the approval workflow by introducing an automated tracking system, reducing turnaround time by 40%.'
       }
     ],
     saveablePhrases: [
@@ -2574,7 +2574,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制破冰 Small Talk',
         instruction: '模拟面试开始，面试官问："How are you today?"。请给出一个包含“心情不错 + 提到一点公司研究 + 反观”的 3 句话回答。',
-        example: ''
+        example: 'I\'m doing really well, thank you for asking! I had a productive morning — I was actually reading about your company\'s recent expansion into Southeast Asia, which I found genuinely exciting and closely aligned with my own career interests. How about yourself — how has your day been going so far?'
       }
     ],
     saveablePhrases: [
@@ -3054,7 +3054,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制入职前问候',
         instruction: '给新经理发一段语音或文字问候。内容：表达对入职的期待，询问是否需要提前阅读什么资料。',
-        example: ''
+        example: 'Hi Sarah, I hope this message finds you well. I\'m reaching out ahead of my start date on Monday — I just wanted to say how genuinely excited I am to be joining the team. I was also wondering if there are any documents, tools, or reading resources you\'d recommend I look at beforehand, so I can hit the ground running from day one. Please feel free to point me in any direction you think would be most helpful. Looking forward to meeting you in person!'
       }
     ],
     saveablePhrases: [
@@ -3069,9 +3069,9 @@ export const unitsContentData: Record<string, UnitContent> = {
         meaning: "如果您能给我一点时间审阅条款后再做正式决定，我将不胜感激。"
       },
       {
-        phrase: "Based on market data, I was hoping for a salary closer to [Amount].",
+        phrase: "I was hoping for something closer to [Amount], based on my experience and current market rates.",
         category: "面试",
-        meaning: "基于市场数据，我期待的薪资更接近[金额]。"
+        meaning: "我期待的薪资更接近[金额]，基于我的经验和当前市场水平。"
       },
       {
         phrase: "I am happy to formally accept the offer as discussed.",
@@ -3535,7 +3535,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制一段入职感言',
         instruction: '模拟在入职第一天的团队会议末尾，大家让你说两句。录制一段 30 秒的语音，表达感谢、兴奋以及愿意学习的态度。',
-        example: ''
+        example: 'Thank you so much for the warm welcome, everyone — I\'m genuinely thrilled to be here. I know there\'s a lot for me to learn about the team, the workflows, and the culture, and I\'m fully committed to listening carefully and contributing as quickly as I can. I\'m really excited about what we\'ll build together, and I can\'t wait to get started. Thank you again!'
       }
     ],
     saveablePhrases: [
@@ -4003,7 +4003,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制澄清提问',
         instruction: '录制一段语音，模拟你在会议中没听清对方说的“数据来源”。要求：使用“抱歉打断 + 没听清最后一点 + 礼貌请求重复”的结构。',
-        example: ''
+        example: 'Sorry to interrupt — I just want to make sure I\'m following along correctly. I missed the very last part about the data source. Could you possibly repeat that for me? I want to make sure I have the right reference before we move on. Thank you!'
       }
     ],
     saveablePhrases: [
@@ -4431,7 +4431,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：礼貌跟进邮件',
         instruction: '如果你三天前发了一封求助邮件，但对方一直没回，请写一段 2-3 句话的礼貌跟进话术。',
-        example: ''
+        example: 'Hi [Name], I hope you\'re doing well. I just wanted to follow up on my email from a few days ago regarding [topic] — I completely understand how busy things can get. Whenever you have a moment, I\'d really appreciate your thoughts or a quick heads-up on timing. Thank you so much!'
       }
     ],
     saveablePhrases: [
@@ -4854,8 +4854,8 @@ export const unitsContentData: Record<string, UnitContent> = {
       },
       {
         basic: "Can we move the meeting to later?",
-        better: "Could we push the meeting back by an hour?",
-        professional: "Would it be convenient for you to postpone our discussion to later today, perhaps around 3 PM?",
+        better: "Could we postpone the meeting to perhaps 3 PM?",
+        professional: "Would it be convenient to postpone our meeting to around 3 PM? Please let me know if that works for you.",
         explanation: "使用 convenient（方便）和 postpone（延后）提升了沟通的正式感和对他人的尊重。"
       },
       {
@@ -4891,7 +4891,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制延期申请',
         instruction: '录制一段 30 秒的语音申请延期。场景：因为需要等待客户的确认函，你无法在今天 EOD 前发报告。请求延期到明天中午。',
-        example: ''
+        example: 'Hi [Name], I wanted to flag something before end of day. I\'m still waiting on the client\'s written confirmation, which is a required attachment for the final report — and unfortunately it hasn\'t come through yet. As a result, I won\'t be able to submit by tonight\'s deadline. I\'d like to request a one-day extension to tomorrow at noon. Everything else is finalised and ready to go the moment that confirmation arrives. Please let me know if that works — and thank you for your understanding.'
       }
     ],
     saveablePhrases: [
@@ -5787,7 +5787,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制 60 秒 Stand-up 更新',
         instruction: '录制一段语音，模拟每日站立会议。要求：包含“昨天做了什么、今天打算做什么、目前有什么困难”。',
-        example: ''
+        example: 'Good morning, everyone! Quick update from my side. Yesterday, I completed the first draft of the Q3 user research report and shared it with the design team for initial review. Today, I\'ll be incorporating their feedback and preparing the summary slides for Thursday\'s presentation. One blocker to flag — I\'m still waiting on dashboard access from IT, which I need for the final data pull. If anyone has a contact there who could expedite it, that would be a huge help. That\'s it from me!'
       }
     ],
     saveablePhrases: [
@@ -6253,7 +6253,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制会议总结',
         instruction: '录制一段 30 秒的语音总结。内容：感谢大家、重申一项核心共识、确认你会发会议纪要。',
-        example: ''
+        example: 'Thank you all for such a productive session today. Before we close, I just want to confirm the key agreement we reached: the engineering team will deliver the API documentation by next Friday, and the product team will share updated wireframes by Wednesday. I\'ll send out a concise meeting summary with all action items and owners to everyone within the hour. Thanks again — great discussion, team!'
       }
     ],
     saveablePhrases: [
@@ -6713,7 +6713,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制成功对齐后的致谢',
         instruction: '录制一段 30 秒的语音。内容：感谢对方部门的支持、提到这次合作产生的协同效应、表达对未来继续合作的期待。',
-        example: ''
+        example: 'I just want to take a moment to sincerely thank the Operations team for your flexibility and support throughout this process. The synergy between our two teams — combining your operational expertise with our client-facing insights — really made a measurable difference in the final outcome. I genuinely believe this kind of cross-functional collaboration is what sets us apart, and I\'m already looking forward to our next opportunity to work together.'
       }
     ],
     saveablePhrases: [
@@ -6955,7 +6955,7 @@ export const unitsContentData: Record<string, UnitContent> = {
         pattern: "How about we schedule a brief 15-minute demo to walk you through the platform?",
         meaning: "不如我们安排一个 15 分钟的简短演示，带您熟悉一下我们的平台？",
         usage: "提出进一步行动方案",
-        example: "How about we schedule a brief 15-minute demo to walk you through the analytics dashboard next Tuesday?"
+        example: "How about we schedule a brief 15-minute demo to walk you through the analytics dashboard and see how it fits your workflow? I'm available anytime this week to speak."
       },
       {
         pattern: "We sincerely apologize for the inconvenience caused by [Issue]. We are working on a fix as we speak.",
@@ -7173,7 +7173,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制 Demo 结束语',
         instruction: '录制一段语音，模拟 Demo 刚讲完。要求：询问客户最喜欢哪个功能、询问是否有疑问、确认你会发录像。',
-        example: ''
+        example: 'And that wraps up today\'s demo — thank you so much for your time and attention! I\'d love to hear your initial impressions: is there a particular feature that resonated most with your team\'s current needs? Please feel free to ask any questions at all, big or small — this is absolutely the right moment for them. And of course, I\'ll send over the full recording along with a written summary of everything we covered within 24 hours, so your team can review it at your own pace.'
       }
     ],
     saveablePhrases: [
@@ -7626,7 +7626,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制 Q&A 应对',
         instruction: '录制一段语音应对挑战性提问。场景：听众问：“为什么这个项目超支了？”要求：肯定问题、解释外部原因（如汇率或原材料）、承诺发后续报告。',
-        example: ''
+        example: 'That\'s a really important question, and I\'m glad you raised it. The overrun was primarily driven by two factors outside our direct control: a significant currency fluctuation between Q2 and Q3, and an unexpected 20% spike in raw material costs due to global supply chain disruptions. We made real-time adjustments wherever possible, but fully absorbing the impact wasn\'t feasible within the original scope. I\'ll include a detailed financial breakdown in the follow-up report I\'m sending to all attendees this week, so you\'ll have the full picture to review.'
       }
     ],
     saveablePhrases: [
@@ -8070,7 +8070,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制应对上级批评',
         instruction: '录制一段语音应对批评。场景：上级批评你的方案“不够创新”。要求：保持冷静、感谢反馈、询问具体的改进方向（获取更多信息）。',
-        example: ''
+        example: 'Thank you for the direct feedback — I genuinely appreciate it. I hear your point about the proposal needing to push further on innovation, and I want to make sure the next version addresses exactly what you have in mind. Could I ask a quick follow-up question? When you say more innovative, are you thinking more in terms of the delivery mechanism, the technology we\'re leveraging, or the overall strategic angle? Any clarity you can give me would really help me sharpen the next iteration in the right direction.'
       }
     ],
     saveablePhrases: [
@@ -8530,7 +8530,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制文化破冰开场',
         instruction: '录制一段 30 秒语音。场景：第一次和海外同事视频。内容：称赞对方所在城市的某个著名特色（如食物或地标）、表达对跨文化合作的兴奋、提议先简单聊聊双方的工作习惯。',
-        example: ''
+        example: 'Hi everyone, it\'s so great to finally meet you all face to face — or screen to screen, I should say! I have to mention, I\'ve always heard that Tokyo has some of the world\'s best ramen, and I\'m genuinely jealous right now. I\'m really excited about what we\'re going to build together across our teams. Before we dive into the agenda, would you be open to spending five minutes sharing how each of our teams likes to communicate and work day-to-day? I think it\'ll make our collaboration a lot smoother from the start.'
       }
     ],
     saveablePhrases: [
@@ -8999,7 +8999,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制动员演讲结语',
         instruction: '录制一段 30 秒的语音，作为项目启动会的结尾。要求：展现自信、肯定团队能力、重申大图景（Big Picture）、发出行动号召。',
-        example: ''
+        example: 'As we close out today\'s kickoff, I want to leave you all with this: what we\'re building here isn\'t just a product — it\'s a solution that will genuinely improve how our users work every single day. I\'ve worked alongside many talented teams over the years, and I am absolutely confident that this team has everything it takes to make it happen. The road ahead will have its challenges, but every great achievement starts with exactly this kind of moment — a shared commitment to a big goal. So let\'s go build something remarkable together. Thank you!'
       }
     ],
     saveablePhrases: [
@@ -9122,10 +9122,10 @@ export const unitsContentData: Record<string, UnitContent> = {
         example: 'High performers usually value autonomy more than financial rewards.'
       },
       {
-        expression: 'checkpoint / milestone',
-        meaning: '检查点 / 里程碑',
-        context: '预设的进度核查时间点',
-        example: 'We will set weekly checkpoints to ensure the project stays on track.'
+        expression: 'set checkpoints',
+        meaning: '设置检查点 / 里程碑节点',
+        context: '定期检查项目进展以确保按计划推进',
+        example: 'Set weekly checkpoints to ensure the project stays on track.'
       },
       {
         expression: 'micromanagement',
@@ -9459,7 +9459,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制检查点谈话',
         instruction: '录制一段语音。场景：周五检查点会议。要求：询问目前进展、赞美已完成的部分、询问下周计划、询问是否需要任何资源。',
-        example: ''
+        example: 'Hey, great to connect for our Friday check-in! How\'s the overall progress looking from your end this week? I had a chance to review the updated documents and I have to say, the team has done outstanding work on the data model — that\'s a significant piece to have locked down. Looking ahead, what are your main priorities going into next week? And is there anything I can do to remove blockers or get you additional resources? My goal is to make sure you have everything you need to move forward with full confidence.'
       }
     ],
     saveablePhrases: [
@@ -9676,8 +9676,8 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         pattern: "I want to manage expectations early: [Issue] might impact our [Goal].",
         meaning: "我想尽早管理期望：[问题]可能会影响我们的[目标]。",
-        usage: "预警潜在风险",
-        example: "I want to manage expectations early: the current hardware shortage might impact our rollout date."
+        usage: "预警潜在风险，让项目相关方有心理准备",
+        example: "I want to manage expectations early: the integration complexity might impact our Q3 launch date."
       },
       {
         pattern: "We could certainly add [Feature], but that would require a trade-off with [Existing Priority].",
@@ -9923,7 +9923,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制拒绝加班请求',
         instruction: '录制一段语音回复同事。场景：周五下午 4 点，同事让你帮他弄个报表。要求：表达同理心、陈述自己的现有高优先级任务、提议周一处理。',
-        example: ''
+        example: 'Hey, I totally hear you — I can see this report is time-sensitive and I really do want to help. Unfortunately I have two high-priority deliverables due first thing Monday morning that I need to protect my weekend to finalise. What I\'d propose is: let\'s connect first thing Monday — I can turn this around quickly before our standups, probably within the first hour. Would that timeline work for you? And if it\'s genuinely urgent before then, let me know and we can figure something out.'
       }
     ],
     saveablePhrases: [
@@ -10379,7 +10379,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制里程碑庆祝致谢',
         instruction: '录制一段 30 秒语音。场景：项目正式上线。要求：宣布成功上线、提到这离不开大家的跨部门协作、表达对下一阶段合作的期待。',
-        example: ''
+        example: 'Team, I am thrilled to announce — we are officially live! This is a huge milestone, and I mean that. What we\'ve accomplished here wouldn\'t have been possible without the extraordinary cross-functional effort from every corner of this organisation — engineering, design, marketing, and operations all firing together. Every late review session, every quick pivot, every piece of sharp feedback led us to this moment. This is just the beginning of what we can do together. I can\'t wait to see what phase two brings. Congratulations to all of you — you deserve this!'
       }
     ],
     saveablePhrases: [
@@ -10843,7 +10843,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制绩效改进目标设定',
         instruction: '录制一段语音。场景：和一名表现下滑的员工定下季度的 SMART 目标。要求：明确目标（如：销售额增长 10%）、明确时间、询问对方的难处、表达对其潜力的信心。',
-        example: ''
+        example: 'I appreciate you coming in today — I want this to be a genuine two-way conversation, not just a top-down review. Looking at the data from last quarter, I\'d like us to set a shared target together: a 10% improvement in your sales conversion rate, from 8% to above 9.5%, by the end of Q3. That\'s a realistic but meaningful stretch based on your current pipeline. Before we formalise anything, I really want to ask — what\'s felt most challenging lately? I want to make sure we\'re tackling the root cause, not just the symptoms. I\'ve seen what you\'re capable of, and I\'m fully committed to supporting you in getting there.'
       }
     ],
     saveablePhrases: [
@@ -11303,7 +11303,7 @@ export const unitsContentData: Record<string, UnitContent> = {
       {
         title: '任务 3：录制尖锐质询应对',
         instruction: '录制一段语音。场景：老板问：“如果这个 AI 项目失败了，我们要损失一千万，你拿什么保证成功？”要求：承认高风险、重申长期收益、强调风险缓解措施和阶段性止损点。',
-        example: ''
+        example: 'That\'s exactly the right question to pressure-test, and I respect the directness. You\'re right — this is a significant investment and the risk is real. I won\'t minimise that. What I can tell you is that we\'ve built a phased approach with explicit go/no-go checkpoints at the 90-day and 180-day marks, which limits our maximum exposure to roughly 30% of the total budget before we validate core assumptions. We\'ve also secured three paying pilot customers who have agreed to co-develop with us, which substantially de-risks the demand side. I\'m committed to fortnightly transparent progress reporting so there are no surprises. My goal isn\'t just success — it\'s accountable, measurable success at every stage.'
       }
     ],
     saveablePhrases: [
