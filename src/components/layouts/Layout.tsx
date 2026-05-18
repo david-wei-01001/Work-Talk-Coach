@@ -1,16 +1,14 @@
 import { ReactNode } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import {
   Home,
-  Map,
+  User,
   BookOpen,
   MessageSquare,
   RefreshCw,
   Library,
-  Calendar,
   Menu,
-  X
 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -22,12 +20,11 @@ interface LayoutProps {
 
 const navItems = [
   { name: '首页', path: '/', icon: Home },
-  { name: '学习路径', path: '/paths', icon: Map },
+  { name: '个人中心', path: '/profile', icon: User },
   { name: '课程单元', path: '/units', icon: BookOpen },
   { name: '情景练习', path: '/practice', icon: MessageSquare },
   { name: '语气改写', path: '/rewriter', icon: RefreshCw },
   { name: '我的短语库', path: '/phrase-bank', icon: Library },
-  { name: '学习计划', path: '/study-plan', icon: Calendar },
 ];
 
 export function Layout({ children }: LayoutProps) {
@@ -38,7 +35,7 @@ export function Layout({ children }: LayoutProps) {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
+          <Link to="/profile" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="rounded-lg bg-primary p-1.5 text-primary-foreground">
               <BookOpen className="h-6 w-6" />
             </div>
@@ -48,7 +45,7 @@ export function Layout({ children }: LayoutProps) {
             <span className="hidden text-sm font-medium text-muted-foreground md:inline-block ml-2 border-l pl-2">
               职场沟通教练
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
@@ -124,7 +121,7 @@ export function Layout({ children }: LayoutProps) {
             Built for Chinese-speaking professionals. Turn business English into real workplace communication skills.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <span>© 2026 WorkTalk Coach. Demo Version.</span>
+            <span>© 2026 WorkTalk Coach.</span>
           </div>
         </div>
       </footer>

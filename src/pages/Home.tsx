@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MessageSquare, Map, Library, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, MessageSquare, User, Library, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const featureCards = [
@@ -13,10 +13,10 @@ const featureCards = [
     color: 'bg-blue-50 text-blue-600',
   },
   {
-    title: '四条职业路径',
-    description: '求职、新人、进阶沟通、管理者——按职业阶段系统学习，掌握核心能力。',
-    icon: Map,
-    link: '/paths',
+    title: '个人中心',
+    description: '查看你的学习进度，选择适合你的职业阶段路径，系统提升核心沟通能力。',
+    icon: User,
+    link: '/profile',
     color: 'bg-green-50 text-green-600',
   },
   {
@@ -29,12 +29,11 @@ const featureCards = [
 ];
 
 const steps = [
-  { title: '学习路径', desc: '选择职业阶段' },
-  { title: '路径目录', desc: '查看 6 个核心单元' },
-  { title: '单元学习', desc: '核心词汇、例句、常见错误' },
-  { title: '情景练习', desc: '多角色 mock 反馈' },
-  { title: '短语库', desc: '收藏并保存改写表达' },
-  { title: '学习计划', desc: '选择 7/14/30/90 天节奏' },
+  { title: '个人中心', desc: '选择职业阶段', link: '/profile' },
+  { title: '路径目录', desc: '查看 6 个核心单元', link: '/units' },
+  { title: '单元学习', desc: '核心词汇、例句、常见错误', link: '/units/u1' },
+  { title: '情景练习', desc: '多角色 mock 反馈', link: '/practice' },
+  { title: '短语库', desc: '收藏并保存改写表达', link: '/phrase-bank' },
 ];
 
 export default function Home() {
@@ -44,19 +43,16 @@ export default function Home() {
       <section className="relative bg-muted/30 py-20 lg:py-32 overflow-hidden">
         <div className="container relative z-10 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="flex flex-col items-start gap-6">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-balance">
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-balance text-primary">
               为面试与职场打造<br />
-              <span className="text-primary">专业商务英语</span>
+              专业商务英语
             </h1>
             <p className="text-xl text-muted-foreground text-pretty max-w-[600px]">
               面向中文母语学习者：求职面试、职场邮件、会议沟通、跨国团队协作——不是背单词，而是练“说得像职场人”。
             </p>
             <div className="flex flex-wrap gap-4 mt-4">
               <Button asChild size="lg" className="rounded-full px-8 h-12 text-base">
-                <Link to="/study-plan">开始学习</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-12 text-base">
-                <Link to="/units?path=job-seeker">进入求职路径目录</Link>
+                <Link to="/profile">进入个人中心</Link>
               </Button>
             </div>
             <p className="text-sm text-muted-foreground mt-2 italic max-w-prose">
@@ -122,7 +118,7 @@ export default function Home() {
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {steps.map((step, i) => (
-              <div key={i} className="flex items-start gap-4 p-6 bg-card rounded-2xl border shadow-sm">
+              <Link key={i} to={step.link} className="flex items-start gap-4 p-6 bg-card rounded-2xl border shadow-sm hover:shadow-md hover:border-primary/30 transition-all">
                 <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0 font-bold text-sm">
                   {i + 1}
                 </div>
@@ -130,12 +126,12 @@ export default function Home() {
                   <h3 className="font-bold text-lg mb-1">{step.title}</h3>
                   <p className="text-sm text-muted-foreground">{step.desc}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="mt-12 p-4 bg-accent/10 rounded-xl border border-accent/20 flex items-center justify-center gap-2 text-sm font-medium text-accent">
             <CheckCircle2 className="w-4 h-4" />
-            <span>当前为演示版，进度保存在浏览器本地，无真实 AI / 登录。</span>
+            <span>进度保存在浏览器本地，即刻开启专业表达训练。</span>
           </div>
         </div>
       </section>

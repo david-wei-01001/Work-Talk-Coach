@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
+import { sendStreamRequest } from '@/lib/sse';
 import { 
   RefreshCw, 
   User, 
@@ -17,9 +18,13 @@ import {
   Users,
   Presentation,
   UserCircle,
-  Phone
+  Phone,
+  Loader2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const quickScenarios = [
   { id: 'remind', name: '催进度', icon: Zap, prompt: 'You need to finish this today or we will miss the deadline.' },
@@ -64,30 +69,74 @@ export default function ToneRewriter() {
   const [activeTone, setActiveTone] = useState('pro');
   const [isGenerating, setIsGenerating] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
-  const handleRewrite = () => {
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
+
+  const handleRewrite = async () => {
     if (!userInput.trim()) {
       toast.error('请输入原句后再生成');
       return;
     }
 
     setIsGenerating(true);
-    setTimeout(() => {
-      const mockResult = {
-        rewritten: `Could we prioritize finishing this today? I’m concerned that we may miss the deadline if it is delayed further.`,
-        explanation: `这句话比原句更适合发给上级，因为它没有直接命令对方，而是用 “Could we prioritize...” 表达建议，同时用 “I’m concerned that...” 说明风险。`,
-        whyBetter: `采用了「风险提示」而非「责任催促」的逻辑，更符合职场向上沟通的礼貌边界。`,
-        scenarios: `适用于紧急项目节点、需要上级关注进度但又不想表现得过于咄咄逼人的场景。`,
-        alternatives: [
-          { phrase: "I'm concerned that...", context: "表达担忧，引入风险" },
-          { phrase: "Could we prioritize...?", context: "礼貌请求优先处理" },
-          { phrase: "To stay on track, we may need to...", context: "以结果为导向提出需求" }
-        ]
-      };
-      setResult(mockResult);
-      setIsGenerating(false);
-      toast.success('改写完成');
-    }, 1200);
+    setResult(null);
+
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
+
+    const targetName = targets.find(t => t.id === activeTarget)?.name;
+    const channelName = channels.find(c => c.id === activeChannel)?.name;
+    const toneName = tones.find(t => t.id === activeTone)?.name;
+
+    let accumulatedResponse = "";
+
+    await sendStreamRequest({
+      functionUrl: `${supabaseUrl}/functions/v1/ai-coach`,
+      requestBody: {
+        type: 'rewriter',
+        target: targetName,
+        channel: channelName,
+        tone: toneName,
+        userInput: userInput
+      },
+      supabaseAnonKey: supabaseAnonKey,
+      onData: (data) => {
+        try {
+          const parsed = JSON.parse(data);
+          const chunk = parsed?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+          accumulatedResponse += chunk;
+        } catch (e) {
+          // Incomplete chunk
+        }
+      },
+      onComplete: () => {
+        setIsGenerating(false);
+        try {
+          const cleanJson = accumulatedResponse.replace(/```json\n?|```/g, '').trim();
+          const rewriteData = JSON.parse(cleanJson);
+          setResult(rewriteData);
+          toast.success('改写完成');
+        } catch (e) {
+          console.error("Failed to parse AI response:", accumulatedResponse);
+          toast.error('改写解析失败，请重试');
+        }
+      },
+      onError: (error) => {
+        setIsGenerating(false);
+        console.error("AI Generation Error:", error);
+        toast.error('改写失败: ' + error.message);
+      },
+      signal: abortControllerRef.current.signal
+    });
   };
 
   const handleQuickScenario = (prompt: string) => {

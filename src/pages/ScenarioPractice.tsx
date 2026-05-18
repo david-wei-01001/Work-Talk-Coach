@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
+import { sendStreamRequest } from '@/lib/sse';
 import { 
   MessageSquare, 
   Mail, 
@@ -16,9 +17,13 @@ import {
   Plus,
   ArrowRight,
   User,
-  Zap
+  Zap,
+  Loader2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const scenarios = [
   { id: 'interview', name: '面试间', icon: MessageSquare, topics: [
@@ -80,9 +85,15 @@ export default function ScenarioPractice() {
   const [activeStyle, setActiveStyle] = useState('pro');
   const [feedback, setFeedback] = useState<any>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
     generateRandomTopic();
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
   }, [activeScenario]);
 
   const generateRandomTopic = () => {
@@ -96,42 +107,65 @@ export default function ScenarioPractice() {
     }
   };
 
-  const handleGenerateFeedback = () => {
+  const handleGenerateFeedback = async () => {
     if (!userInput.trim()) {
       toast.error('请输入内容后再生成反馈');
       return;
     }
 
     setIsGenerating(true);
-    // Simulate API call
-    setTimeout(() => {
-      const mockFeedback = {
-        score: 'B+',
-        overall: 'Your answer is understandable, but it sounds too general. Try to include one specific responsibility, one concrete example, and one measurable result.',
-        pros: [
-          'You correctly identified the context.',
-          'The sentence structure is clear.',
-          'Professional tone used.'
-        ],
-        improvements: [
-          '“did many things” is too vague for a professional setting.',
-          '“learned a lot” is a common phrase; try to specify what exactly you learned.',
-          'Add action verbs like "coordinated", "initiated", or "implemented".'
-        ],
-        errors: [
-          { error: 'I was responsible of...', correction: 'I was responsible for...', explanation: 'Preposition "for" is required after "responsible".' }
-        ],
-        improvedVersion: `In my last role, I was responsible for supporting event coordination, preparing communication materials, and following up with participants. This experience helped me develop stronger organizational and communication skills, especially when working with cross-functional teams under tight deadlines.`,
-        usefulPhrases: [
-          { phrase: 'I was responsible for...', meaning: '我负责...' },
-          { phrase: 'Oversee the project', meaning: '监督项目' },
-          { phrase: 'Collaborate with...', meaning: '与...合作' }
-        ]
-      };
-      setFeedback(mockFeedback);
-      setIsGenerating(false);
-      toast.success('反馈生成成功');
-    }, 1500);
+    setFeedback(null);
+    
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
+
+    const roleName = roles.find(r => r.id === activeRole)?.name;
+    const styleName = feedbackStyles.find(s => s.id === activeStyle)?.name;
+    const scenarioName = scenarios.find(s => s.id === activeScenario)?.name;
+
+    let accumulatedResponse = "";
+
+    await sendStreamRequest({
+      functionUrl: `${supabaseUrl}/functions/v1/ai-coach`,
+      requestBody: {
+        type: 'scenario',
+        role: roleName,
+        style: styleName,
+        scenario: scenarioName,
+        topic: currentTopic,
+        userInput: userInput
+      },
+      supabaseAnonKey: supabaseAnonKey,
+      onData: (data) => {
+        try {
+          const parsed = JSON.parse(data);
+          const chunk = parsed?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+          accumulatedResponse += chunk;
+        } catch (e) {
+          // Incomplete chunk
+        }
+      },
+      onComplete: () => {
+        setIsGenerating(false);
+        try {
+          const cleanJson = accumulatedResponse.replace(/```json\n?|```/g, '').trim();
+          const feedbackData = JSON.parse(cleanJson);
+          setFeedback(feedbackData);
+          toast.success('反馈生成成功');
+        } catch (e) {
+          console.error("Failed to parse AI response:", accumulatedResponse);
+          toast.error('生成反馈解析失败，请重试');
+        }
+      },
+      onError: (error) => {
+        setIsGenerating(false);
+        console.error("AI Generation Error:", error);
+        toast.error('生成反馈失败: ' + error.message);
+      },
+      signal: abortControllerRef.current.signal
+    });
   };
 
   const handleSaveToPhraseBank = (phrase: string, meaning: string) => {
@@ -154,7 +188,7 @@ export default function ScenarioPractice() {
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold tracking-tight mb-2">在真实职场场景中练表达</h1>
         <p className="text-muted-foreground font-medium">
-          选择场景、对象与语气，获得职场化改写与专业反馈（Demo 版）。
+          选择场景、对象与语气，获得职场化改写与专业反馈。
         </p>
       </div>
 
