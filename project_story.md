@@ -1,7 +1,7 @@
 # WorkTalk Coach: Elevating Professional Presence
 
 ## Inspiration
-For many non-native English speakers, especially Chinese professionals, the "Glass Ceiling" in global companies isn't just about technical skill—it is about the **Communication Gap**. We noticed that while many possess a high level of written proficiency, they struggle with the **professional register** and **nuance** required in high-stakes environments. We were inspired to build a tool that doesn't just teach "English," but teaches "Professionalism." We wanted to create a "safe harbor" where users could fail, iterate, and refine their executive presence without the pressure of a real boardroom.
+For many non-native English speakers, especially Chinese professionals, the "Glass Ceiling" in global companies isn't just about technical skill; it is about the **Communication Gap**. We noticed that while many possess a high level of written proficiency, they struggle with the **professional register** and **nuance** required in high-stakes environments. We were inspired to build a tool that doesn't just teach "English," but teaches "Professionalism." We wanted to create a "safe harbor" where users could fail, iterate, and refine their executive presence without the pressure of a real boardroom.
 
 ## What it does
 WorkTalk Coach is a specialized web application that provides scenario-based business English training. It guides users through four career-critical paths: **Job Preparation**, **New Hire Integration**, **Advanced Communication**, and **Management Leadership**. 
