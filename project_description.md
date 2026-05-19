@@ -7,7 +7,7 @@ Many professionals possess a decent grasp of English grammar but struggle with t
 
 ### Building with MeDo: The Process
 We used MeDo to architect the entire application from a conceptual PDF specification into a fully functional, multi-page Web App.
-- **Strategic Prompting**: We structured my conversations with MeDo to first establish a robust data model for the 71+ practice tasks and then iteratively built the UI components using React, shadcn/ui, and Tailwind CSS.
+- **Strategic Prompting**: We structured our conversations with MeDo to first establish a robust data model for the 71+ practice tasks and then iteratively built the UI components using React, shadcn/ui, and Tailwind CSS.
 - **Iterative Refinement**: We started with a simple prototype and progressively "leveled up" the features. For instance, when we realized the voice feedback was too generic, we prompted MeDo to design a complex 5-dimension rubric, which required sophisticated logic in both the frontend and the backend Edge Functions.
 
 ### The Most Impressive Feature: 5-Dimension Voice Assessment
