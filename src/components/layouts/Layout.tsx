@@ -21,7 +21,6 @@ interface LayoutProps {
 const navItems = [
   { name: '首页', path: '/', icon: Home },
   { name: '个人中心', path: '/profile', icon: User },
-  { name: '课程单元', path: '/units', icon: BookOpen },
   { name: '情景练习', path: '/practice', icon: MessageSquare },
   { name: '语气改写', path: '/rewriter', icon: RefreshCw },
   { name: '我的短语库', path: '/phrase-bank', icon: Library },

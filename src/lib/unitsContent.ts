@@ -66,10 +66,17 @@ export interface ExpressionUpgrade {
   example?: string;
 }
 
+export interface DifficultyExamples {
+  beginner: string;
+  intermediate: string;
+  advanced: string;
+}
+
 export interface PracticeTask {
   title: string;
   instruction: string;
   example?: string;
+  examples?: DifficultyExamples;
 }
 
 export interface SaveablePhrase {
@@ -80,7 +87,9 @@ export interface SaveablePhrase {
 
 export interface Resource {
   name: string;
+  type?: string;
   description: string;
+  why?: string;
   url: string;
 }
 
@@ -620,24 +629,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: 'British Council Business English',
-        description: '适合学习职场英语基础表达和商务沟通',
+        name: "British Council — You're Hired",
+        type: '英语学习系列',
+        description: '招聘与选拔、面试语言、录用与跟进',
+        why: '围绕真实求职流程，适合练习 job application、interview、follow-up language 和 interview communication。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/youre-hired/episode-01'
+      },
+      {
+        name: 'British Council — Business English',
+        type: '学习资源合集',
+        description: '工作与职位、招聘、邮件、面试',
+        why: '覆盖 interview skills、business emails、business topics，适合作为求职路径的综合学习资源。',
         url: 'https://learnenglish.britishcouncil.org/free-resources/business'
       },
       {
-        name: 'BBC Learning English - English at Work',
-        description: '真实职场场景对话，适合练习日常工作沟通',
-        url: 'https://www.bbc.co.uk/learningenglish/english/features/english-at-work'
+        name: 'Harvard — Resumes & Cover Letter Guide',
+        type: '大学 career guide',
+        description: '简历与求职信、工作经历描述、求职材料准备',
+        why: '适合学习 resume / cover letter 的结构、内容和表达，尤其适合把经历写得更具体、更 professional。',
+        url: 'https://careerservices.fas.harvard.edu/resources/harvard-college-guide-to-resumes-cover-letters/'
       },
       {
-        name: 'Purdue OWL Workplace Writers',
-        description: '职场写作指南，包括简历、求职信和职场邮件',
-        url: 'https://owl.purdue.edu/owl/subject_specific_writing/professional_technical_writing/workplace_writers.html'
+        name: 'MIT — How to Write an Effective Cover Letter',
+        type: '大学 career article',
+        description: '求职信、申请邮件、职位匹配表达',
+        why: '强调 cover letter 要针对具体职位，并用经历例子突出相关技能，适合训练 tailored application writing。',
+        url: 'https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/'
       },
       {
-        name: 'MIT Career Advising - STAR Method',
-        description: '学习如何用 STAR 方法回答行为面试问题',
+        name: 'MIT — STAR Method for Behavioral Interviews',
+        type: '大学 interview guide',
+        description: '技能与资质、面试语言、behavioral interview',
+        why: '适合训练 STAR 面试回答，让用户的答案更具体、更有结构，避免只说 "I learned a lot" 或 "I am good at communication"。',
         url: 'https://capd.mit.edu/resources/the-star-method-for-behavioral-interviews/'
+      },
+      {
+        name: 'Berkeley Career Engagement — Interview Preparation',
+        type: '大学 career guide',
+        description: '面试语言、招聘与选拔、技能与资质',
+        why: '系统整理了面试准备、常见问题、面试礼仪、结尾提问和 thank-you letter 等内容，适合帮助用户准备完整英文面试流程。',
+        url: 'https://career.berkeley.edu/prepare-for-success/interviewing/interview-preparation/'
       }
     ]
   },
@@ -1130,19 +1161,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "British Council: You're Hired Episode 01",
-        description: "从 Recruiter 视角学习面试初筛的真实对话",
-        url: "https://learnenglish.britishcouncil.org/free-resources/business/youre-hired/episode-01"
+        name: "British Council — You're Hired",
+        type: '英语学习系列',
+        description: '招聘与选拔、面试语言、录用与跟进',
+        why: '围绕真实求职流程，适合练习 job application、interview、follow-up language 和 interview communication。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/youre-hired/episode-01'
       },
       {
-        name: "Indeed: Follow-up Email After Interview",
-        description: "面试后各种场景下的邮件模板和发送时机建议",
-        url: "https://ca.indeed.com/career-advice/interviewing/follow-up-email-after-interview"
+        name: 'British Council — Business English',
+        type: '学习资源合集',
+        description: '工作与职位、招聘、邮件、面试',
+        why: '覆盖 interview skills、business emails、business topics，适合作为求职路径的综合学习资源。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business'
       },
       {
-        name: "Purdue OWL: Job Search Documents",
-        description: "系统学习如何解读求职文档和招聘信息",
-        url: "https://owl.purdue.edu/owl/job_search_writing/index.html"
+        name: 'Harvard — Resumes & Cover Letter Guide',
+        type: '大学 career guide',
+        description: '简历与求职信、工作经历描述、求职材料准备',
+        why: '适合学习 resume / cover letter 的结构、内容和表达，尤其适合把经历写得更具体、更 professional。',
+        url: 'https://careerservices.fas.harvard.edu/resources/harvard-college-guide-to-resumes-cover-letters/'
+      },
+      {
+        name: 'MIT — How to Write an Effective Cover Letter',
+        type: '大学 career article',
+        description: '求职信、申请邮件、职位匹配表达',
+        why: '强调 cover letter 要针对具体职位，并用经历例子突出相关技能，适合训练 tailored application writing。',
+        url: 'https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/'
+      },
+      {
+        name: 'MIT — STAR Method for Behavioral Interviews',
+        type: '大学 interview guide',
+        description: '技能与资质、面试语言、behavioral interview',
+        why: '适合训练 STAR 面试回答，让用户的答案更具体、更有结构，避免只说 "I learned a lot" 或 "I am good at communication"。',
+        url: 'https://capd.mit.edu/resources/the-star-method-for-behavioral-interviews/'
+      },
+      {
+        name: 'Berkeley Career Engagement — Interview Preparation',
+        type: '大学 career guide',
+        description: '面试语言、招聘与选拔、技能与资质',
+        why: '系统整理了面试准备、常见问题、面试礼仪、结尾提问和 thank-you letter 等内容，适合帮助用户准备完整英文面试流程。',
+        url: 'https://career.berkeley.edu/prepare-for-success/interviewing/interview-preparation/'
       }
     ]
   },
@@ -1630,19 +1688,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "MIT Career Advising: Identifying Your Skills",
-        description: "学习如何分类和描述你的职场技能",
-        url: "https://capd.mit.edu/resources/identifying-and-articulating-your-skills/"
+        name: "British Council — You're Hired",
+        type: '英语学习系列',
+        description: '招聘与选拔、面试语言、录用与跟进',
+        why: '围绕真实求职流程，适合练习 job application、interview、follow-up language 和 interview communication。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/youre-hired/episode-01'
       },
       {
-        name: "Harvard College Guide: Resume Action Verbs",
-        description: "提供大量强大的动词来描述你的成就",
-        url: "https://careerservices.fas.harvard.edu/resources/bullet-point-action-verbs/"
+        name: 'British Council — Business English',
+        type: '学习资源合集',
+        description: '工作与职位、招聘、邮件、面试',
+        why: '覆盖 interview skills、business emails、business topics，适合作为求职路径的综合学习资源。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business'
       },
       {
-        name: "British Council: Transferable Skills",
-        description: "理解如何将过去的经验转化为当前的资质",
-        url: "https://learnenglish.britishcouncil.org/free-resources/business/transferable-skills"
+        name: 'Harvard — Resumes & Cover Letter Guide',
+        type: '大学 career guide',
+        description: '简历与求职信、工作经历描述、求职材料准备',
+        why: '适合学习 resume / cover letter 的结构、内容和表达，尤其适合把经历写得更具体、更 professional。',
+        url: 'https://careerservices.fas.harvard.edu/resources/harvard-college-guide-to-resumes-cover-letters/'
+      },
+      {
+        name: 'MIT — How to Write an Effective Cover Letter',
+        type: '大学 career article',
+        description: '求职信、申请邮件、职位匹配表达',
+        why: '强调 cover letter 要针对具体职位，并用经历例子突出相关技能，适合训练 tailored application writing。',
+        url: 'https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/'
+      },
+      {
+        name: 'MIT — STAR Method for Behavioral Interviews',
+        type: '大学 interview guide',
+        description: '技能与资质、面试语言、behavioral interview',
+        why: '适合训练 STAR 面试回答，让用户的答案更具体、更有结构，避免只说 "I learned a lot" 或 "I am good at communication"。',
+        url: 'https://capd.mit.edu/resources/the-star-method-for-behavioral-interviews/'
+      },
+      {
+        name: 'Berkeley Career Engagement — Interview Preparation',
+        type: '大学 career guide',
+        description: '面试语言、招聘与选拔、技能与资质',
+        why: '系统整理了面试准备、常见问题、面试礼仪、结尾提问和 thank-you letter 等内容，适合帮助用户准备完整英文面试流程。',
+        url: 'https://career.berkeley.edu/prepare-for-success/interviewing/interview-preparation/'
       }
     ]
   },
@@ -2131,19 +2216,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "Harvard College Guide to Resumes & Cover Letters",
-        description: "哈佛大学官方简历与求职信撰写指南，含大量范例",
-        url: "https://careerservices.fas.harvard.edu/resources/harvard-college-guide-to-resumes-cover-letters/"
+        name: "British Council — You're Hired",
+        type: '英语学习系列',
+        description: '招聘与选拔、面试语言、录用与跟进',
+        why: '围绕真实求职流程，适合练习 job application、interview、follow-up language 和 interview communication。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/youre-hired/episode-01'
       },
       {
-        name: "MIT Career Advising: Action Verbs List",
-        description: "按技能类别分类的高阶简历强力动词表",
-        url: "https://capd.mit.edu/resources/action-verbs-for-resumes-and-cover-letters/"
+        name: 'British Council — Business English',
+        type: '学习资源合集',
+        description: '工作与职位、招聘、邮件、面试',
+        why: '覆盖 interview skills、business emails、business topics，适合作为求职路径的综合学习资源。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business'
       },
       {
-        name: "Purdue OWL: Cover Letters Types",
-        description: "学习不同类型的求职信结构及其适用场景",
-        url: "https://owl.purdue.edu/owl/job_search_writing/resumes_and_vitas/index.html"
+        name: 'Harvard — Resumes & Cover Letter Guide',
+        type: '大学 career guide',
+        description: '简历与求职信、工作经历描述、求职材料准备',
+        why: '适合学习 resume / cover letter 的结构、内容和表达，尤其适合把经历写得更具体、更 professional。',
+        url: 'https://careerservices.fas.harvard.edu/resources/harvard-college-guide-to-resumes-cover-letters/'
+      },
+      {
+        name: 'MIT — How to Write an Effective Cover Letter',
+        type: '大学 career article',
+        description: '求职信、申请邮件、职位匹配表达',
+        why: '强调 cover letter 要针对具体职位，并用经历例子突出相关技能，适合训练 tailored application writing。',
+        url: 'https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/'
+      },
+      {
+        name: 'MIT — STAR Method for Behavioral Interviews',
+        type: '大学 interview guide',
+        description: '技能与资质、面试语言、behavioral interview',
+        why: '适合训练 STAR 面试回答，让用户的答案更具体、更有结构，避免只说 "I learned a lot" 或 "I am good at communication"。',
+        url: 'https://capd.mit.edu/resources/the-star-method-for-behavioral-interviews/'
+      },
+      {
+        name: 'Berkeley Career Engagement — Interview Preparation',
+        type: '大学 career guide',
+        description: '面试语言、招聘与选拔、技能与资质',
+        why: '系统整理了面试准备、常见问题、面试礼仪、结尾提问和 thank-you letter 等内容，适合帮助用户准备完整英文面试流程。',
+        url: 'https://career.berkeley.edu/prepare-for-success/interviewing/interview-preparation/'
       }
     ]
   },
@@ -2621,19 +2733,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "Indeed: The STAR Interview Method",
-        description: "详尽的行为面试题库及 STAR 回答范例",
-        url: "https://www.indeed.com/career-advice/interviewing/how-to-use-the-star-interview-response-technique"
+        name: "British Council — You're Hired",
+        type: '英语学习系列',
+        description: '招聘与选拔、面试语言、录用与跟进',
+        why: '围绕真实求职流程，适合练习 job application、interview、follow-up language 和 interview communication。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/youre-hired/episode-01'
       },
       {
-        name: "The Muse: 51 Great Questions to Ask in an Interview",
-        description: "面试最后环节最值得向面试官提出的问题清单",
-        url: "https://www.themuse.com/advice/51-interview-questions-you-should-be-asking"
+        name: 'British Council — Business English',
+        type: '学习资源合集',
+        description: '工作与职位、招聘、邮件、面试',
+        why: '覆盖 interview skills、business emails、business topics，适合作为求职路径的综合学习资源。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business'
       },
       {
-        name: "LinkedIn: Common Interview Questions and Answers",
-        description: "LinkedIn 官方提供的面试常见问题及解析视频",
-        url: "https://www.linkedin.com/learning/paths/prepare-for-common-interview-questions"
+        name: 'Harvard — Resumes & Cover Letter Guide',
+        type: '大学 career guide',
+        description: '简历与求职信、工作经历描述、求职材料准备',
+        why: '适合学习 resume / cover letter 的结构、内容和表达，尤其适合把经历写得更具体、更 professional。',
+        url: 'https://careerservices.fas.harvard.edu/resources/harvard-college-guide-to-resumes-cover-letters/'
+      },
+      {
+        name: 'MIT — How to Write an Effective Cover Letter',
+        type: '大学 career article',
+        description: '求职信、申请邮件、职位匹配表达',
+        why: '强调 cover letter 要针对具体职位，并用经历例子突出相关技能，适合训练 tailored application writing。',
+        url: 'https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/'
+      },
+      {
+        name: 'MIT — STAR Method for Behavioral Interviews',
+        type: '大学 interview guide',
+        description: '技能与资质、面试语言、behavioral interview',
+        why: '适合训练 STAR 面试回答，让用户的答案更具体、更有结构，避免只说 "I learned a lot" 或 "I am good at communication"。',
+        url: 'https://capd.mit.edu/resources/the-star-method-for-behavioral-interviews/'
+      },
+      {
+        name: 'Berkeley Career Engagement — Interview Preparation',
+        type: '大学 career guide',
+        description: '面试语言、招聘与选拔、技能与资质',
+        why: '系统整理了面试准备、常见问题、面试礼仪、结尾提问和 thank-you letter 等内容，适合帮助用户准备完整英文面试流程。',
+        url: 'https://career.berkeley.edu/prepare-for-success/interviewing/interview-preparation/'
       }
     ]
   },
@@ -3101,19 +3240,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "Harvard Business Review: How to Negotiate Your Next Salary",
-        description: "HBR 提供的专业薪资谈判策略与话术建议",
-        url: "https://hbr.org/2014/04/how-to-negotiate-your-next-salary"
+        name: "British Council — You're Hired",
+        type: '英语学习系列',
+        description: '招聘与选拔、面试语言、录用与跟进',
+        why: '围绕真实求职流程，适合练习 job application、interview、follow-up language 和 interview communication。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/youre-hired/episode-01'
       },
       {
-        name: "Glassdoor: How to Accept a Job Offer",
-        description: "接受 Job Offer 的最佳实践、模板与注意事项",
-        url: "https://www.glassdoor.com/blog/guide/how-to-accept-a-job-offer/"
+        name: 'British Council — Business English',
+        type: '学习资源合集',
+        description: '工作与职位、招聘、邮件、面试',
+        why: '覆盖 interview skills、business emails、business topics，适合作为求职路径的综合学习资源。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business'
       },
       {
-        name: "The Balance: How to Decline a Job Offer Politely",
-        description: "如何有礼貌地拒绝录用通知且不破坏职场关系",
-        url: "https://www.thebalancemoney.com/how-to-decline-a-job-offer-2061398"
+        name: 'Harvard — Resumes & Cover Letter Guide',
+        type: '大学 career guide',
+        description: '简历与求职信、工作经历描述、求职材料准备',
+        why: '适合学习 resume / cover letter 的结构、内容和表达，尤其适合把经历写得更具体、更 professional。',
+        url: 'https://careerservices.fas.harvard.edu/resources/harvard-college-guide-to-resumes-cover-letters/'
+      },
+      {
+        name: 'MIT — How to Write an Effective Cover Letter',
+        type: '大学 career article',
+        description: '求职信、申请邮件、职位匹配表达',
+        why: '强调 cover letter 要针对具体职位，并用经历例子突出相关技能，适合训练 tailored application writing。',
+        url: 'https://capd.mit.edu/resources/how-to-write-an-effective-cover-letter/'
+      },
+      {
+        name: 'MIT — STAR Method for Behavioral Interviews',
+        type: '大学 interview guide',
+        description: '技能与资质、面试语言、behavioral interview',
+        why: '适合训练 STAR 面试回答，让用户的答案更具体、更有结构，避免只说 "I learned a lot" 或 "I am good at communication"。',
+        url: 'https://capd.mit.edu/resources/the-star-method-for-behavioral-interviews/'
+      },
+      {
+        name: 'Berkeley Career Engagement — Interview Preparation',
+        type: '大学 career guide',
+        description: '面试语言、招聘与选拔、技能与资质',
+        why: '系统整理了面试准备、常见问题、面试礼仪、结尾提问和 thank-you letter 等内容，适合帮助用户准备完整英文面试流程。',
+        url: 'https://career.berkeley.edu/prepare-for-success/interviewing/interview-preparation/'
       }
     ]
   },
@@ -3582,19 +3748,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "LinkedIn Learning: New Hire Onboarding Guide",
-        description: "从第一天到第一年，教你如何在新公司建立个人品牌",
-        url: "https://www.linkedin.com/learning/paths/becoming-a-successful-new-hire"
+        name: 'British Council — Meeting New People',
+        type: '视频 + speaking practice',
+        description: '入职与自我介绍、small talk、认识同事',
+        why: '适合练习第一次见同事、介绍自己、开启自然对话和基本 workplace small talk。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/speaking/a1/meeting-new-people'
       },
       {
-        name: "Harvard Business Review: The First 90 Days",
-        description: "职场新人（及管理者）入职头 90 天的战略路线图",
-        url: "https://hbr.org/2013/05/the-first-90-days"
+        name: 'British Council — English for Emails',
+        type: '职场邮件课程',
+        description: '基础职场邮件、请求确认、日程沟通',
+        why: '专门训练 A2-B1 工作邮件，包括组织内容、表达请求、检查语气和写清楚邮件目的。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/english-emails'
       },
       {
-        name: "The Muse: 7 Ways to Introduce Yourself to Your New Co-workers",
-        description: "七种实用的职场自我介绍方式及范例",
-        url: "https://www.themuse.com/advice/how-to-introduce-yourself-at-a-new-job"
+        name: 'Purdue OWL — Email Etiquette',
+        type: '写作指南',
+        description: '基础职场邮件、向上沟通、正式请求',
+        why: '适合学习给上级、老师、陌生人或同事写邮件时的 subject line、greeting、tone、grammar 和 professionalism。',
+        url: 'https://owl.purdue.edu/owl/general_writing/academic_writing/email_etiquette.html'
+      },
+      {
+        name: 'Harvard DCE — Communicate More Effectively in the Workplace',
+        type: 'workplace communication article',
+        description: '请求确认、会议参与、周报更新、职场沟通基础',
+        why: '适合学习 workplace communication 的基本原则，例如清楚表达目的、提前准备 agenda、明确 decision-making 和 next steps。',
+        url: 'https://professional.dce.harvard.edu/blog/how-to-communicate-more-effectively-in-the-workplace/'
+      },
+      {
+        name: 'BBC Learning English — English at Work Playlist',
+        type: 'YouTube 视频系列',
+        description: '入职、会议、同事沟通、职场礼仪、职场 small talk',
+        why: '用办公室情景讲 English-speaking workplace 的语言和 etiquette，很适合职场新人学习真实语境中的表达。',
+        url: 'https://www.youtube.com/playlist?list=PLcetZ6gSk969oGvAI0e4_PgVnlGbm64bp'
+      },
+      {
+        name: 'Asana — Status Report Template for Projects',
+        type: 'workplace blog / template',
+        description: '周报与进度更新、日程与时间管理、请求与确认',
+        why: '清楚展示 status report 应该包含 progress、blockers、risks、next steps 等信息，特别适合职场新人学习 weekly update 和向 manager 汇报进度。',
+        url: 'https://asana.com/templates/status-report'
       }
     ]
   },
@@ -4050,19 +4243,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "MindTools: Asking for Clarification",
-        description: "如何在工作中礼貌且准确地提问以避免代价高昂的误解",
-        url: "https://www.mindtools.com/pages/article/clarification.htm"
+        name: 'British Council — Meeting New People',
+        type: '视频 + speaking practice',
+        description: '入职与自我介绍、small talk、认识同事',
+        why: '适合练习第一次见同事、介绍自己、开启自然对话和基本 workplace small talk。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/speaking/a1/meeting-new-people'
       },
       {
-        name: "Grammarly: How to Be Polite in English",
-        description: "职场英文中软化语气（Softening the tone）的实用技巧",
-        url: "https://www.grammarly.com/blog/how-to-be-polite-in-english/"
+        name: 'British Council — English for Emails',
+        type: '职场邮件课程',
+        description: '基础职场邮件、请求确认、日程沟通',
+        why: '专门训练 A2-B1 工作邮件，包括组织内容、表达请求、检查语气和写清楚邮件目的。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/english-emails'
       },
       {
-        name: "Harvard Business Review: How to Interrupt Someone Politely",
-        description: "在会议或讨论中礼貌切入话题的艺术与话术",
-        url: "https://hbr.org/2019/11/how-to-interrupt-someone-politely"
+        name: 'Purdue OWL — Email Etiquette',
+        type: '写作指南',
+        description: '基础职场邮件、向上沟通、正式请求',
+        why: '适合学习给上级、老师、陌生人或同事写邮件时的 subject line、greeting、tone、grammar 和 professionalism。',
+        url: 'https://owl.purdue.edu/owl/general_writing/academic_writing/email_etiquette.html'
+      },
+      {
+        name: 'Harvard DCE — Communicate More Effectively in the Workplace',
+        type: 'workplace communication article',
+        description: '请求确认、会议参与、周报更新、职场沟通基础',
+        why: '适合学习 workplace communication 的基本原则，例如清楚表达目的、提前准备 agenda、明确 decision-making 和 next steps。',
+        url: 'https://professional.dce.harvard.edu/blog/how-to-communicate-more-effectively-in-the-workplace/'
+      },
+      {
+        name: 'BBC Learning English — English at Work Playlist',
+        type: 'YouTube 视频系列',
+        description: '入职、会议、同事沟通、职场礼仪、职场 small talk',
+        why: '用办公室情景讲 English-speaking workplace 的语言和 etiquette，很适合职场新人学习真实语境中的表达。',
+        url: 'https://www.youtube.com/playlist?list=PLcetZ6gSk969oGvAI0e4_PgVnlGbm64bp'
+      },
+      {
+        name: 'Asana — Status Report Template for Projects',
+        type: 'workplace blog / template',
+        description: '周报与进度更新、日程与时间管理、请求与确认',
+        why: '清楚展示 status report 应该包含 progress、blockers、risks、next steps 等信息，特别适合职场新人学习 weekly update 和向 manager 汇报进度。',
+        url: 'https://asana.com/templates/status-report'
       }
     ]
   },
@@ -4478,19 +4698,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "Grammarly: Business Email Etiquette",
-        description: "2024 年最全的职场邮件礼仪与常用表达指南",
-        url: "https://www.grammarly.com/blog/email-etiquette/"
+        name: 'British Council — Meeting New People',
+        type: '视频 + speaking practice',
+        description: '入职与自我介绍、small talk、认识同事',
+        why: '适合练习第一次见同事、介绍自己、开启自然对话和基本 workplace small talk。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/speaking/a1/meeting-new-people'
       },
       {
-        name: "Harvard Business Review: How to Write Better Emails",
-        description: "HBR 专家教你如何让你的职场沟通更简洁且有效",
-        url: "https://hbr.org/2023/04/stop-writing-unnecessary-emails"
+        name: 'British Council — English for Emails',
+        type: '职场邮件课程',
+        description: '基础职场邮件、请求确认、日程沟通',
+        why: '专门训练 A2-B1 工作邮件，包括组织内容、表达请求、检查语气和写清楚邮件目的。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/english-emails'
       },
       {
-        name: "The Balance: Standard Business Email Format",
-        description: "不同类型商务邮件的标准模版与结构解析",
-        url: "https://www.thebalancemoney.com/business-email-format-with-examples-2060696"
+        name: 'Purdue OWL — Email Etiquette',
+        type: '写作指南',
+        description: '基础职场邮件、向上沟通、正式请求',
+        why: '适合学习给上级、老师、陌生人或同事写邮件时的 subject line、greeting、tone、grammar 和 professionalism。',
+        url: 'https://owl.purdue.edu/owl/general_writing/academic_writing/email_etiquette.html'
+      },
+      {
+        name: 'Harvard DCE — Communicate More Effectively in the Workplace',
+        type: 'workplace communication article',
+        description: '请求确认、会议参与、周报更新、职场沟通基础',
+        why: '适合学习 workplace communication 的基本原则，例如清楚表达目的、提前准备 agenda、明确 decision-making 和 next steps。',
+        url: 'https://professional.dce.harvard.edu/blog/how-to-communicate-more-effectively-in-the-workplace/'
+      },
+      {
+        name: 'BBC Learning English — English at Work Playlist',
+        type: 'YouTube 视频系列',
+        description: '入职、会议、同事沟通、职场礼仪、职场 small talk',
+        why: '用办公室情景讲 English-speaking workplace 的语言和 etiquette，很适合职场新人学习真实语境中的表达。',
+        url: 'https://www.youtube.com/playlist?list=PLcetZ6gSk969oGvAI0e4_PgVnlGbm64bp'
+      },
+      {
+        name: 'Asana — Status Report Template for Projects',
+        type: 'workplace blog / template',
+        description: '周报与进度更新、日程与时间管理、请求与确认',
+        why: '清楚展示 status report 应该包含 progress、blockers、risks、next steps 等信息，特别适合职场新人学习 weekly update 和向 manager 汇报进度。',
+        url: 'https://asana.com/templates/status-report'
       }
     ]
   },
@@ -4938,19 +5185,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "Calendly Blog: Email Templates for Scheduling Meetings",
-        description: "各种场景下的会议预约邮件模版与最佳实践",
-        url: "https://calendly.com/blog/email-templates-scheduling-meetings/"
+        name: 'British Council — Meeting New People',
+        type: '视频 + speaking practice',
+        description: '入职与自我介绍、small talk、认识同事',
+        why: '适合练习第一次见同事、介绍自己、开启自然对话和基本 workplace small talk。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/speaking/a1/meeting-new-people'
       },
       {
-        name: "MindTools: Effective Time Management",
-        description: "如何在繁忙的职场中排定任务优先级并管理个人精力",
-        url: "https://www.mindtools.com/pages/article/newHTE_00.htm"
+        name: 'British Council — English for Emails',
+        type: '职场邮件课程',
+        description: '基础职场邮件、请求确认、日程沟通',
+        why: '专门训练 A2-B1 工作邮件，包括组织内容、表达请求、检查语气和写清楚邮件目的。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/english-emails'
       },
       {
-        name: "Harvard Business Review: The Art of Rescheduling",
-        description: "如何礼貌地更改会议时间而不引起对方的反感",
-        url: "https://hbr.org/2021/01/how-to-cancel-a-meeting-at-the-last-minute"
+        name: 'Purdue OWL — Email Etiquette',
+        type: '写作指南',
+        description: '基础职场邮件、向上沟通、正式请求',
+        why: '适合学习给上级、老师、陌生人或同事写邮件时的 subject line、greeting、tone、grammar 和 professionalism。',
+        url: 'https://owl.purdue.edu/owl/general_writing/academic_writing/email_etiquette.html'
+      },
+      {
+        name: 'Harvard DCE — Communicate More Effectively in the Workplace',
+        type: 'workplace communication article',
+        description: '请求确认、会议参与、周报更新、职场沟通基础',
+        why: '适合学习 workplace communication 的基本原则，例如清楚表达目的、提前准备 agenda、明确 decision-making 和 next steps。',
+        url: 'https://professional.dce.harvard.edu/blog/how-to-communicate-more-effectively-in-the-workplace/'
+      },
+      {
+        name: 'BBC Learning English — English at Work Playlist',
+        type: 'YouTube 视频系列',
+        description: '入职、会议、同事沟通、职场礼仪、职场 small talk',
+        why: '用办公室情景讲 English-speaking workplace 的语言和 etiquette，很适合职场新人学习真实语境中的表达。',
+        url: 'https://www.youtube.com/playlist?list=PLcetZ6gSk969oGvAI0e4_PgVnlGbm64bp'
+      },
+      {
+        name: 'Asana — Status Report Template for Projects',
+        type: 'workplace blog / template',
+        description: '周报与进度更新、日程与时间管理、请求与确认',
+        why: '清楚展示 status report 应该包含 progress、blockers、risks、next steps 等信息，特别适合职场新人学习 weekly update 和向 manager 汇报进度。',
+        url: 'https://asana.com/templates/status-report'
       }
     ]
   },
@@ -5394,19 +5668,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "Harvard Business Review: How to Run a Great Meeting",
-        description: "从议程设定到会后跟进，全方位提升会议效率的经典指南",
-        url: "https://hbr.org/2015/03/how-to-run-a-great-meeting"
+        name: 'British Council — Meeting New People',
+        type: '视频 + speaking practice',
+        description: '入职与自我介绍、small talk、认识同事',
+        why: '适合练习第一次见同事、介绍自己、开启自然对话和基本 workplace small talk。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/speaking/a1/meeting-new-people'
       },
       {
-        name: "Zoom: Best Practices for Virtual Meetings",
-        description: "视频会议中的礼仪、技巧以及如何处理常见的技术难题",
-        url: "https://blog.zoom.us/virtual-meeting-etiquette-tips-for-attendees/"
+        name: 'British Council — English for Emails',
+        type: '职场邮件课程',
+        description: '基础职场邮件、请求确认、日程沟通',
+        why: '专门训练 A2-B1 工作邮件，包括组织内容、表达请求、检查语气和写清楚邮件目的。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/english-emails'
       },
       {
-        name: "LinkedIn: Meeting Participation for Introverts",
-        description: "内向者如何在会议中自信地发言并做出有价值的贡献",
-        url: "https://www.linkedin.com/pulse/meeting-participation-introverts-how-speak-up-share-your-ideas"
+        name: 'Purdue OWL — Email Etiquette',
+        type: '写作指南',
+        description: '基础职场邮件、向上沟通、正式请求',
+        why: '适合学习给上级、老师、陌生人或同事写邮件时的 subject line、greeting、tone、grammar 和 professionalism。',
+        url: 'https://owl.purdue.edu/owl/general_writing/academic_writing/email_etiquette.html'
+      },
+      {
+        name: 'Harvard DCE — Communicate More Effectively in the Workplace',
+        type: 'workplace communication article',
+        description: '请求确认、会议参与、周报更新、职场沟通基础',
+        why: '适合学习 workplace communication 的基本原则，例如清楚表达目的、提前准备 agenda、明确 decision-making 和 next steps。',
+        url: 'https://professional.dce.harvard.edu/blog/how-to-communicate-more-effectively-in-the-workplace/'
+      },
+      {
+        name: 'BBC Learning English — English at Work Playlist',
+        type: 'YouTube 视频系列',
+        description: '入职、会议、同事沟通、职场礼仪、职场 small talk',
+        why: '用办公室情景讲 English-speaking workplace 的语言和 etiquette，很适合职场新人学习真实语境中的表达。',
+        url: 'https://www.youtube.com/playlist?list=PLcetZ6gSk969oGvAI0e4_PgVnlGbm64bp'
+      },
+      {
+        name: 'Asana — Status Report Template for Projects',
+        type: 'workplace blog / template',
+        description: '周报与进度更新、日程与时间管理、请求与确认',
+        why: '清楚展示 status report 应该包含 progress、blockers、risks、next steps 等信息，特别适合职场新人学习 weekly update 和向 manager 汇报进度。',
+        url: 'https://asana.com/templates/status-report'
       }
     ]
   },
@@ -5834,19 +6135,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "Weekdone: How to Write a Weekly Progress Report",
-        description: "职场周报撰写的 PPP 框架详解及实战模版",
-        url: "https://blog.weekdone.com/how-to-write-a-weekly-progress-report/"
+        name: 'British Council — Meeting New People',
+        type: '视频 + speaking practice',
+        description: '入职与自我介绍、small talk、认识同事',
+        why: '适合练习第一次见同事、介绍自己、开启自然对话和基本 workplace small talk。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/speaking/a1/meeting-new-people'
       },
       {
-        name: "StatusHero: The Science of Daily Stand-up Meetings",
-        description: "如何让每日/每周的同步会议变得短小、精悍且有效",
-        url: "https://statushero.com/blog/the-daily-stand-up-meeting-guide/"
+        name: 'British Council — English for Emails',
+        type: '职场邮件课程',
+        description: '基础职场邮件、请求确认、日程沟通',
+        why: '专门训练 A2-B1 工作邮件，包括组织内容、表达请求、检查语气和写清楚邮件目的。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/english-emails'
       },
       {
-        name: "Harvard Business Review: Don't Just Report Progress, Report Learning",
-        description: "HBR 建议：如何在工作报告中展示你的成长与思考深度",
-        url: "https://hbr.org/2019/02/dont-just-report-your-progress-report-your-learning"
+        name: 'Purdue OWL — Email Etiquette',
+        type: '写作指南',
+        description: '基础职场邮件、向上沟通、正式请求',
+        why: '适合学习给上级、老师、陌生人或同事写邮件时的 subject line、greeting、tone、grammar 和 professionalism。',
+        url: 'https://owl.purdue.edu/owl/general_writing/academic_writing/email_etiquette.html'
+      },
+      {
+        name: 'Harvard DCE — Communicate More Effectively in the Workplace',
+        type: 'workplace communication article',
+        description: '请求确认、会议参与、周报更新、职场沟通基础',
+        why: '适合学习 workplace communication 的基本原则，例如清楚表达目的、提前准备 agenda、明确 decision-making 和 next steps。',
+        url: 'https://professional.dce.harvard.edu/blog/how-to-communicate-more-effectively-in-the-workplace/'
+      },
+      {
+        name: 'BBC Learning English — English at Work Playlist',
+        type: 'YouTube 视频系列',
+        description: '入职、会议、同事沟通、职场礼仪、职场 small talk',
+        why: '用办公室情景讲 English-speaking workplace 的语言和 etiquette，很适合职场新人学习真实语境中的表达。',
+        url: 'https://www.youtube.com/playlist?list=PLcetZ6gSk969oGvAI0e4_PgVnlGbm64bp'
+      },
+      {
+        name: 'Asana — Status Report Template for Projects',
+        type: 'workplace blog / template',
+        description: '周报与进度更新、日程与时间管理、请求与确认',
+        why: '清楚展示 status report 应该包含 progress、blockers、risks、next steps 等信息，特别适合职场新人学习 weekly update 和向 manager 汇报进度。',
+        url: 'https://asana.com/templates/status-report'
       }
     ]
   },
@@ -6300,19 +6628,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "MindTools: Running Effective Meetings",
-        description: "从会议准备到后期跟进，全方位提升主持能力的深度教程",
-        url: "https://www.mindtools.com/pages/article/newTMM_03.htm"
+        name: 'British Council — Podcasts for Professionals',
+        type: '听力 + transcript',
+        description: '跨团队协作、客户沟通、演示与汇报',
+        why: '覆盖 business topics、talks、presentations、dialogues，适合 B2 进阶用户训练商务听力、专业表达和 workplace discussion。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/podcasts-professionals'
       },
       {
-        name: "Harvard Business Review: Stop the Meeting Madness",
-        description: "如何判断是否需要开会，以及如何让会议变得真正有意义",
-        url: "https://hbr.org/2017/07/stop-the-meeting-madness"
+        name: 'British Council — Meetings: Getting Down to Business',
+        type: 'meeting lesson / role-play',
+        description: '主导会议、会议 small talk、正式进入议题',
+        why: '直接讲 meeting opening、small talk、getting down to business，并包含 role-play，非常适合正式职场对话与 small talk 结构训练。',
+        url: 'https://www.teachingenglish.org.uk/teaching-resources/teaching-adults/english-business/meetings-1-getting-down-business'
       },
       {
-        name: "Ted Talk: How to save the world from bad meetings",
-        description: "David Grady 幽默讲解如何通过礼貌的沟通终结低效会议",
-        url: "https://www.ted.com/talks/david_grady_how_to_save_the_world_from_bad_meetings"
+        name: 'BBC Learning English — Office English Playlist',
+        type: 'YouTube 视频系列',
+        description: '主导会议、催进度、冲突沟通、办公室表达',
+        why: '包含 meetings、chasing people、conflict 等真实办公室主题，适合做进阶场景练习和口语输入。',
+        url: 'https://www.youtube.com/playlist?list=PLvJsXpfD2S82ZlthZb0LMlw8JgoN9Vczu'
+      },
+      {
+        name: 'Harvard DCE — 8 Ways to Improve Your Communication Skills',
+        type: 'workplace communication article',
+        description: '跨团队沟通、客户沟通、棘手对话、演示表达',
+        why: '适合提炼 clear communication、active listening、audience awareness、concise wording 等进阶沟通原则。',
+        url: 'https://professional.dce.harvard.edu/blog/8-ways-you-can-improve-your-communication-skills/'
+      },
+      {
+        name: 'Atlassian — Project Collaboration Best Practices',
+        type: 'workplace blog/article',
+        description: '跨团队协作、项目更新、action items、shared ownership',
+        why: '适合学习 status updates、action items、shared project communication 和团队协作流程，能支撑 cross-team collaboration 单元。',
+        url: 'https://www.atlassian.com/software/confluence/resources/guides/best-practices/project-collaboration'
+      },
+      {
+        name: 'Harvard Business Review — What It Takes to Give a Great Presentation',
+        type: 'business communication article',
+        description: '演示与汇报、主导会议、客户沟通',
+        why: '适合训练 presentation structure、audience awareness、clear message 和 persuasive delivery，帮助用户把英文汇报从"把内容说完"提升到"让听众真正理解并被说服"。',
+        url: 'https://hbr.org/2020/01/what-it-takes-to-give-a-great-presentation'
       }
     ]
   },
@@ -6760,19 +7115,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "HBR: How to Manage a Cross-Functional Team",
-        description: "如何领导来自不同背景、拥有不同目标的团队达成共同目标",
-        url: "https://hbr.org/2015/11/how-to-manage-a-cross-functional-team"
+        name: 'British Council — Podcasts for Professionals',
+        type: '听力 + transcript',
+        description: '跨团队协作、客户沟通、演示与汇报',
+        why: '覆盖 business topics、talks、presentations、dialogues，适合 B2 进阶用户训练商务听力、专业表达和 workplace discussion。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/podcasts-professionals'
       },
       {
-        name: "MindTools: Influencing Without Authority",
-        description: "在没有职权的情况下，如何说服并影响其他部门的同事配合工作",
-        url: "https://www.mindtools.com/pages/article/influencing-without-authority.htm"
+        name: 'British Council — Meetings: Getting Down to Business',
+        type: 'meeting lesson / role-play',
+        description: '主导会议、会议 small talk、正式进入议题',
+        why: '直接讲 meeting opening、small talk、getting down to business，并包含 role-play，非常适合正式职场对话与 small talk 结构训练。',
+        url: 'https://www.teachingenglish.org.uk/teaching-resources/teaching-adults/english-business/meetings-1-getting-down-business'
       },
       {
-        name: "Forbes: 5 Ways To Build Better Relationships Across Departments",
-        description: "打破部门壁垒，建立长期职场互助关系的五个实操技巧",
-        url: "https://www.forbes.com/sites/forbescoachescouncil/2021/05/10/5-ways-to-build-better-relationships-across-departments/"
+        name: 'BBC Learning English — Office English Playlist',
+        type: 'YouTube 视频系列',
+        description: '主导会议、催进度、冲突沟通、办公室表达',
+        why: '包含 meetings、chasing people、conflict 等真实办公室主题，适合做进阶场景练习和口语输入。',
+        url: 'https://www.youtube.com/playlist?list=PLvJsXpfD2S82ZlthZb0LMlw8JgoN9Vczu'
+      },
+      {
+        name: 'Harvard DCE — 8 Ways to Improve Your Communication Skills',
+        type: 'workplace communication article',
+        description: '跨团队沟通、客户沟通、棘手对话、演示表达',
+        why: '适合提炼 clear communication、active listening、audience awareness、concise wording 等进阶沟通原则。',
+        url: 'https://professional.dce.harvard.edu/blog/8-ways-you-can-improve-your-communication-skills/'
+      },
+      {
+        name: 'Atlassian — Project Collaboration Best Practices',
+        type: 'workplace blog/article',
+        description: '跨团队协作、项目更新、action items、shared ownership',
+        why: '适合学习 status updates、action items、shared project communication 和团队协作流程，能支撑 cross-team collaboration 单元。',
+        url: 'https://www.atlassian.com/software/confluence/resources/guides/best-practices/project-collaboration'
+      },
+      {
+        name: 'Harvard Business Review — What It Takes to Give a Great Presentation',
+        type: 'business communication article',
+        description: '演示与汇报、主导会议、客户沟通',
+        why: '适合训练 presentation structure、audience awareness、clear message 和 persuasive delivery，帮助用户把英文汇报从"把内容说完"提升到"让听众真正理解并被说服"。',
+        url: 'https://hbr.org/2020/01/what-it-takes-to-give-a-great-presentation'
       }
     ]
   },
@@ -7220,19 +7602,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "HubSpot: The Ultimate Guide to Sales Calls",
-        description: "从破冰到结单，全方位的客户通话话术与心理技巧指南",
-        url: "https://blog.hubspot.com/sales/sales-calls"
+        name: 'British Council — Podcasts for Professionals',
+        type: '听力 + transcript',
+        description: '跨团队协作、客户沟通、演示与汇报',
+        why: '覆盖 business topics、talks、presentations、dialogues，适合 B2 进阶用户训练商务听力、专业表达和 workplace discussion。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/podcasts-professionals'
       },
       {
-        name: "Salesforce: Best Practices for Customer Email Communication",
-        description: "如何通过专业的邮件沟通提升客户满意度与信任度",
-        url: "https://www.salesforce.com/resources/articles/customer-service-email-templates/"
+        name: 'British Council — Meetings: Getting Down to Business',
+        type: 'meeting lesson / role-play',
+        description: '主导会议、会议 small talk、正式进入议题',
+        why: '直接讲 meeting opening、small talk、getting down to business，并包含 role-play，非常适合正式职场对话与 small talk 结构训练。',
+        url: 'https://www.teachingenglish.org.uk/teaching-resources/teaching-adults/english-business/meetings-1-getting-down-business'
       },
       {
-        name: "HBR: How to Handle a Dissatisfied Customer",
-        description: "哈佛商业评论：处理客户投诉与负面情绪的科学策略",
-        url: "https://hbr.org/2017/01/how-to-handle-a-dissatisfied-customer"
+        name: 'BBC Learning English — Office English Playlist',
+        type: 'YouTube 视频系列',
+        description: '主导会议、催进度、冲突沟通、办公室表达',
+        why: '包含 meetings、chasing people、conflict 等真实办公室主题，适合做进阶场景练习和口语输入。',
+        url: 'https://www.youtube.com/playlist?list=PLvJsXpfD2S82ZlthZb0LMlw8JgoN9Vczu'
+      },
+      {
+        name: 'Harvard DCE — 8 Ways to Improve Your Communication Skills',
+        type: 'workplace communication article',
+        description: '跨团队沟通、客户沟通、棘手对话、演示表达',
+        why: '适合提炼 clear communication、active listening、audience awareness、concise wording 等进阶沟通原则。',
+        url: 'https://professional.dce.harvard.edu/blog/8-ways-you-can-improve-your-communication-skills/'
+      },
+      {
+        name: 'Atlassian — Project Collaboration Best Practices',
+        type: 'workplace blog/article',
+        description: '跨团队协作、项目更新、action items、shared ownership',
+        why: '适合学习 status updates、action items、shared project communication 和团队协作流程，能支撑 cross-team collaboration 单元。',
+        url: 'https://www.atlassian.com/software/confluence/resources/guides/best-practices/project-collaboration'
+      },
+      {
+        name: 'Harvard Business Review — What It Takes to Give a Great Presentation',
+        type: 'business communication article',
+        description: '演示与汇报、主导会议、客户沟通',
+        why: '适合训练 presentation structure、audience awareness、clear message 和 persuasive delivery，帮助用户把英文汇报从"把内容说完"提升到"让听众真正理解并被说服"。',
+        url: 'https://hbr.org/2020/01/what-it-takes-to-give-a-great-presentation'
       }
     ]
   },
@@ -7673,19 +8082,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "TED Blog: 10 Tips for Better Slide Decks",
-        description: "从视觉设计到演讲技巧，让你的演示像 TED 演讲一样动人",
-        url: "https://blog.ted.com/10-tips-for-better-slide-decks/"
+        name: 'British Council — Podcasts for Professionals',
+        type: '听力 + transcript',
+        description: '跨团队协作、客户沟通、演示与汇报',
+        why: '覆盖 business topics、talks、presentations、dialogues，适合 B2 进阶用户训练商务听力、专业表达和 workplace discussion。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/podcasts-professionals'
       },
       {
-        name: "Harvard Business Review: How to Give a Killer Presentation",
-        description: "HBR 经典指南：如何通过讲故事和逻辑构建极具说服力的演示",
-        url: "https://hbr.org/2013/06/how-to-give-a-killer-presentation"
+        name: 'British Council — Meetings: Getting Down to Business',
+        type: 'meeting lesson / role-play',
+        description: '主导会议、会议 small talk、正式进入议题',
+        why: '直接讲 meeting opening、small talk、getting down to business，并包含 role-play，非常适合正式职场对话与 small talk 结构训练。',
+        url: 'https://www.teachingenglish.org.uk/teaching-resources/teaching-adults/english-business/meetings-1-getting-down-business'
       },
       {
-        name: "Toastmasters International: Presentation Tips",
-        description: "全球顶尖演讲组织提供的关于肢体语言、语音和心理素质的专业建议",
-        url: "https://www.toastmasters.org/resources/public-speaking-tips"
+        name: 'BBC Learning English — Office English Playlist',
+        type: 'YouTube 视频系列',
+        description: '主导会议、催进度、冲突沟通、办公室表达',
+        why: '包含 meetings、chasing people、conflict 等真实办公室主题，适合做进阶场景练习和口语输入。',
+        url: 'https://www.youtube.com/playlist?list=PLvJsXpfD2S82ZlthZb0LMlw8JgoN9Vczu'
+      },
+      {
+        name: 'Harvard DCE — 8 Ways to Improve Your Communication Skills',
+        type: 'workplace communication article',
+        description: '跨团队沟通、客户沟通、棘手对话、演示表达',
+        why: '适合提炼 clear communication、active listening、audience awareness、concise wording 等进阶沟通原则。',
+        url: 'https://professional.dce.harvard.edu/blog/8-ways-you-can-improve-your-communication-skills/'
+      },
+      {
+        name: 'Atlassian — Project Collaboration Best Practices',
+        type: 'workplace blog/article',
+        description: '跨团队协作、项目更新、action items、shared ownership',
+        why: '适合学习 status updates、action items、shared project communication 和团队协作流程，能支撑 cross-team collaboration 单元。',
+        url: 'https://www.atlassian.com/software/confluence/resources/guides/best-practices/project-collaboration'
+      },
+      {
+        name: 'Harvard Business Review — What It Takes to Give a Great Presentation',
+        type: 'business communication article',
+        description: '演示与汇报、主导会议、客户沟通',
+        why: '适合训练 presentation structure、audience awareness、clear message 和 persuasive delivery，帮助用户把英文汇报从"把内容说完"提升到"让听众真正理解并被说服"。',
+        url: 'https://hbr.org/2020/01/what-it-takes-to-give-a-great-presentation'
       }
     ]
   },
@@ -8117,19 +8553,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "HBR: How to Have a Difficult Conversation",
-        description: "哈佛商业评论：从心理准备到对话执行的职场冲突化解指南",
-        url: "https://hbr.org/2017/05/how-to-have-a-difficult-conversation"
+        name: 'British Council — Podcasts for Professionals',
+        type: '听力 + transcript',
+        description: '跨团队协作、客户沟通、演示与汇报',
+        why: '覆盖 business topics、talks、presentations、dialogues，适合 B2 进阶用户训练商务听力、专业表达和 workplace discussion。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/podcasts-professionals'
       },
       {
-        name: "MindTools: Difficult Conversations - Managing Conflict",
-        description: "如何在职场分歧中保持专业度并达成双赢的实用技巧",
-        url: "https://www.mindtools.com/pages/article/difficult-conversations.htm"
+        name: 'British Council — Meetings: Getting Down to Business',
+        type: 'meeting lesson / role-play',
+        description: '主导会议、会议 small talk、正式进入议题',
+        why: '直接讲 meeting opening、small talk、getting down to business，并包含 role-play，非常适合正式职场对话与 small talk 结构训练。',
+        url: 'https://www.teachingenglish.org.uk/teaching-resources/teaching-adults/english-business/meetings-1-getting-down-business'
       },
       {
-        name: "TED: 3 steps to having difficult conversations",
-        description: "Tamekia MizLadi Smith 讲解如何通过共情和事实减少对话中的阻力",
-        url: "https://www.ted.com/talks/tamekia_mizladi_smith_how_to_teach_people_about_privilege_without_making_them_defensive"
+        name: 'BBC Learning English — Office English Playlist',
+        type: 'YouTube 视频系列',
+        description: '主导会议、催进度、冲突沟通、办公室表达',
+        why: '包含 meetings、chasing people、conflict 等真实办公室主题，适合做进阶场景练习和口语输入。',
+        url: 'https://www.youtube.com/playlist?list=PLvJsXpfD2S82ZlthZb0LMlw8JgoN9Vczu'
+      },
+      {
+        name: 'Harvard DCE — 8 Ways to Improve Your Communication Skills',
+        type: 'workplace communication article',
+        description: '跨团队沟通、客户沟通、棘手对话、演示表达',
+        why: '适合提炼 clear communication、active listening、audience awareness、concise wording 等进阶沟通原则。',
+        url: 'https://professional.dce.harvard.edu/blog/8-ways-you-can-improve-your-communication-skills/'
+      },
+      {
+        name: 'Atlassian — Project Collaboration Best Practices',
+        type: 'workplace blog/article',
+        description: '跨团队协作、项目更新、action items、shared ownership',
+        why: '适合学习 status updates、action items、shared project communication 和团队协作流程，能支撑 cross-team collaboration 单元。',
+        url: 'https://www.atlassian.com/software/confluence/resources/guides/best-practices/project-collaboration'
+      },
+      {
+        name: 'Harvard Business Review — What It Takes to Give a Great Presentation',
+        type: 'business communication article',
+        description: '演示与汇报、主导会议、客户沟通',
+        why: '适合训练 presentation structure、audience awareness、clear message 和 persuasive delivery，帮助用户把英文汇报从"把内容说完"提升到"让听众真正理解并被说服"。',
+        url: 'https://hbr.org/2020/01/what-it-takes-to-give-a-great-presentation'
       }
     ]
   },
@@ -8577,19 +9040,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "The Culture Map by Erin Meyer (Official Summary)",
-        description: "必读：通过 8 个维度解析不同国家在沟通、领导和决策上的差异",
-        url: "https://www.erinmeyer.com/books/the-culture-map/"
+        name: 'British Council — Podcasts for Professionals',
+        type: '听力 + transcript',
+        description: '跨团队协作、客户沟通、演示与汇报',
+        why: '覆盖 business topics、talks、presentations、dialogues，适合 B2 进阶用户训练商务听力、专业表达和 workplace discussion。',
+        url: 'https://learnenglish.britishcouncil.org/free-resources/business/podcasts-professionals'
       },
       {
-        name: "HBR: Communicating Across Cultures",
-        description: "哈佛商业评论：如何在跨国团队中建立清晰的沟通标准与信任",
-        url: "https://hbr.org/2016/10/communicating-across-cultures"
+        name: 'British Council — Meetings: Getting Down to Business',
+        type: 'meeting lesson / role-play',
+        description: '主导会议、会议 small talk、正式进入议题',
+        why: '直接讲 meeting opening、small talk、getting down to business，并包含 role-play，非常适合正式职场对话与 small talk 结构训练。',
+        url: 'https://www.teachingenglish.org.uk/teaching-resources/teaching-adults/english-business/meetings-1-getting-down-business'
       },
       {
-        name: "Coursera: Intercultural Communication and Conflict Resolution",
-        description: "由顶尖大学提供的关于如何识别文化偏见并化解跨国冲突的免费课程",
-        url: "https://www.coursera.org/learn/intercultural-communication"
+        name: 'BBC Learning English — Office English Playlist',
+        type: 'YouTube 视频系列',
+        description: '主导会议、催进度、冲突沟通、办公室表达',
+        why: '包含 meetings、chasing people、conflict 等真实办公室主题，适合做进阶场景练习和口语输入。',
+        url: 'https://www.youtube.com/playlist?list=PLvJsXpfD2S82ZlthZb0LMlw8JgoN9Vczu'
+      },
+      {
+        name: 'Harvard DCE — 8 Ways to Improve Your Communication Skills',
+        type: 'workplace communication article',
+        description: '跨团队沟通、客户沟通、棘手对话、演示表达',
+        why: '适合提炼 clear communication、active listening、audience awareness、concise wording 等进阶沟通原则。',
+        url: 'https://professional.dce.harvard.edu/blog/8-ways-you-can-improve-your-communication-skills/'
+      },
+      {
+        name: 'Atlassian — Project Collaboration Best Practices',
+        type: 'workplace blog/article',
+        description: '跨团队协作、项目更新、action items、shared ownership',
+        why: '适合学习 status updates、action items、shared project communication 和团队协作流程，能支撑 cross-team collaboration 单元。',
+        url: 'https://www.atlassian.com/software/confluence/resources/guides/best-practices/project-collaboration'
+      },
+      {
+        name: 'Harvard Business Review — What It Takes to Give a Great Presentation',
+        type: 'business communication article',
+        description: '演示与汇报、主导会议、客户沟通',
+        why: '适合训练 presentation structure、audience awareness、clear message 和 persuasive delivery，帮助用户把英文汇报从"把内容说完"提升到"让听众真正理解并被说服"。',
+        url: 'https://hbr.org/2020/01/what-it-takes-to-give-a-great-presentation'
       }
     ]
   },
@@ -9046,19 +9536,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "Simon Sinek: How great leaders inspire action (TED Talk)",
-        description: "必看：著名的“黄金圈”理论，阐述为何伟大的领导者总是从‘为什么’开始",
-        url: "https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action"
+        name: 'HBS Online — 8 Essential Leadership Communication Skills',
+        type: 'leadership article',
+        description: '战略汇报、利益相关方更新、管理沟通',
+        why: '适合学习管理者如何建立 trust、align efforts、adapt communication style、listen actively 和 communicate with clarity。',
+        url: 'https://online.hbs.edu/blog/post/leadership-communication'
       },
       {
-        name: "HBR: What Makes a Great Leader?",
-        description: "哈佛商业评论：深度解析情商、远见和决策力如何共同构成卓越领导力",
-        url: "https://hbr.org/2004/01/what-makes-a-leader"
+        name: 'HBS Online — How to Give Feedback Effectively',
+        type: 'leadership article',
+        description: '反馈与建设性批评、绩效沟通、1:1 沟通',
+        why: '适合学习 constructive feedback、empathy、specific examples 和 improvement-focused language。',
+        url: 'https://online.hbs.edu/blog/post/how-to-give-feedback-effectively'
       },
       {
-        name: "MindTools: Developing a Vision for Your Team",
-        description: "实操指南：如何通过头脑风暴和战略分析为团队制定清晰的未来愿景",
-        url: "https://www.mindtools.com/pages/article/developing-vision.htm"
+        name: 'HBS Online — How to Delegate Effectively',
+        type: 'leadership article',
+        description: '授权与任务分配、期望管理、团队协作',
+        why: '适合学习如何说明 desired outcome、expectation、timeline、resources、authority 和 check-in structure。',
+        url: 'https://online.hbs.edu/blog/post/how-to-delegate-effectively'
+      },
+      {
+        name: 'HBS Online — Navigate Difficult Conversations with Employees',
+        type: 'leadership article',
+        description: '棘手对话、绩效沟通、冲突处理',
+        why: '适合学习 trust-building、active listening、difficult conversation structure，以及如何在管理沟通中保持清楚和尊重。',
+        url: 'https://online.hbs.edu/blog/post/how-to-have-difficult-conversations-with-employees'
+      },
+      {
+        name: 'Harvard Business Publishing — How to Communicate for Impact',
+        type: 'leadership article / video',
+        description: '利益相关方更新、战略与决策汇报、高层沟通',
+        why: '适合学习 senior update、executive summary、decision briefing 和 high-impact communication。',
+        url: 'https://www.harvardbusiness.org/insight/how-to-communicate-for-impact/'
+      },
+      {
+        name: 'MindTools — What Is Stakeholder Management?',
+        type: 'management article',
+        description: '利益相关方更新、期望管理、战略与决策汇报',
+        why: '解释 stakeholder management 的核心：识别关键相关方，并用合适的方式沟通、维持关系和获得支持。很适合 alignment、expectation management 和 stakeholder communication 内容。',
+        url: 'https://www.mindtools.com/at2o1co/what-is-stakeholder-management/'
       }
     ]
   },
@@ -9506,19 +10023,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "HBR: To Be a Great Leader, You Need to Delegate Well",
-        description: "哈佛商业评论：如何克服“自己做更快”的心理障碍并有效授权",
-        url: "https://hbr.org/2017/10/to-be-a-great-leader-you-have-to-learn-how-to-delegate-well"
+        name: 'HBS Online — 8 Essential Leadership Communication Skills',
+        type: 'leadership article',
+        description: '战略汇报、利益相关方更新、管理沟通',
+        why: '适合学习管理者如何建立 trust、align efforts、adapt communication style、listen actively 和 communicate with clarity。',
+        url: 'https://online.hbs.edu/blog/post/leadership-communication'
       },
       {
-        name: "MindTools: Successful Delegation",
-        description: "授权的六个关键步骤：从选择正确的人到提供持续支持",
-        url: "https://www.mindtools.com/pages/article/newLDR_98.htm"
+        name: 'HBS Online — How to Give Feedback Effectively',
+        type: 'leadership article',
+        description: '反馈与建设性批评、绩效沟通、1:1 沟通',
+        why: '适合学习 constructive feedback、empathy、specific examples 和 improvement-focused language。',
+        url: 'https://online.hbs.edu/blog/post/how-to-give-feedback-effectively'
       },
       {
-        name: "Ted Talk: How to get better at delegating",
-        description: "领导力专家分享如何通过授权建立更具弹性和创造力的团队",
-        url: "https://www.ted.com/talks/stacy_sims_how_to_get_better_at_delegating"
+        name: 'HBS Online — How to Delegate Effectively',
+        type: 'leadership article',
+        description: '授权与任务分配、期望管理、团队协作',
+        why: '适合学习如何说明 desired outcome、expectation、timeline、resources、authority 和 check-in structure。',
+        url: 'https://online.hbs.edu/blog/post/how-to-delegate-effectively'
+      },
+      {
+        name: 'HBS Online — Navigate Difficult Conversations with Employees',
+        type: 'leadership article',
+        description: '棘手对话、绩效沟通、冲突处理',
+        why: '适合学习 trust-building、active listening、difficult conversation structure，以及如何在管理沟通中保持清楚和尊重。',
+        url: 'https://online.hbs.edu/blog/post/how-to-have-difficult-conversations-with-employees'
+      },
+      {
+        name: 'Harvard Business Publishing — How to Communicate for Impact',
+        type: 'leadership article / video',
+        description: '利益相关方更新、战略与决策汇报、高层沟通',
+        why: '适合学习 senior update、executive summary、decision briefing 和 high-impact communication。',
+        url: 'https://www.harvardbusiness.org/insight/how-to-communicate-for-impact/'
+      },
+      {
+        name: 'MindTools — What Is Stakeholder Management?',
+        type: 'management article',
+        description: '利益相关方更新、期望管理、战略与决策汇报',
+        why: '解释 stakeholder management 的核心：识别关键相关方，并用合适的方式沟通、维持关系和获得支持。很适合 alignment、expectation management 和 stakeholder communication 内容。',
+        url: 'https://www.mindtools.com/at2o1co/what-is-stakeholder-management/'
       }
     ]
   },
@@ -9970,19 +10514,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "HBR: How to Manage Your Boss's Expectations",
-        description: "哈佛商业评论：如何通过有效的沟通，让上级对你的产出有合理且正向的预期",
-        url: "https://hbr.org/2015/01/how-to-manage-your-bosss-expectations"
+        name: 'HBS Online — 8 Essential Leadership Communication Skills',
+        type: 'leadership article',
+        description: '战略汇报、利益相关方更新、管理沟通',
+        why: '适合学习管理者如何建立 trust、align efforts、adapt communication style、listen actively 和 communicate with clarity。',
+        url: 'https://online.hbs.edu/blog/post/leadership-communication'
       },
       {
-        name: "MindTools: Managing Stakeholder Expectations",
-        description: "利益相关方管理矩阵：如何根据权力和利益大小，差异化地管理各方期望",
-        url: "https://www.mindtools.com/pages/article/newPPM_07.htm"
+        name: 'HBS Online — How to Give Feedback Effectively',
+        type: 'leadership article',
+        description: '反馈与建设性批评、绩效沟通、1:1 沟通',
+        why: '适合学习 constructive feedback、empathy、specific examples 和 improvement-focused language。',
+        url: 'https://online.hbs.edu/blog/post/how-to-give-feedback-effectively'
       },
       {
-        name: "Forbes: The Art of Under-Promising and Over-Delivering",
-        description: "实操技巧：如何在职场中建立可靠的个人品牌，让每一次交付都成为惊喜",
-        url: "https://www.forbes.com/sites/forbescoachescouncil/2018/01/30/the-art-of-under-promising-and-over-delivering/"
+        name: 'HBS Online — How to Delegate Effectively',
+        type: 'leadership article',
+        description: '授权与任务分配、期望管理、团队协作',
+        why: '适合学习如何说明 desired outcome、expectation、timeline、resources、authority 和 check-in structure。',
+        url: 'https://online.hbs.edu/blog/post/how-to-delegate-effectively'
+      },
+      {
+        name: 'HBS Online — Navigate Difficult Conversations with Employees',
+        type: 'leadership article',
+        description: '棘手对话、绩效沟通、冲突处理',
+        why: '适合学习 trust-building、active listening、difficult conversation structure，以及如何在管理沟通中保持清楚和尊重。',
+        url: 'https://online.hbs.edu/blog/post/how-to-have-difficult-conversations-with-employees'
+      },
+      {
+        name: 'Harvard Business Publishing — How to Communicate for Impact',
+        type: 'leadership article / video',
+        description: '利益相关方更新、战略与决策汇报、高层沟通',
+        why: '适合学习 senior update、executive summary、decision briefing 和 high-impact communication。',
+        url: 'https://www.harvardbusiness.org/insight/how-to-communicate-for-impact/'
+      },
+      {
+        name: 'MindTools — What Is Stakeholder Management?',
+        type: 'management article',
+        description: '利益相关方更新、期望管理、战略与决策汇报',
+        why: '解释 stakeholder management 的核心：识别关键相关方，并用合适的方式沟通、维持关系和获得支持。很适合 alignment、expectation management 和 stakeholder communication 内容。',
+        url: 'https://www.mindtools.com/at2o1co/what-is-stakeholder-management/'
       }
     ]
   },
@@ -10426,19 +10997,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "HBR: How to Write a Project Status Report",
-        description: "哈佛商业评论：如何撰写一份既能展示成绩又能管理风险的专业状态报告",
-        url: "https://hbr.org/2016/11/how-to-write-a-project-status-report"
+        name: 'HBS Online — 8 Essential Leadership Communication Skills',
+        type: 'leadership article',
+        description: '战略汇报、利益相关方更新、管理沟通',
+        why: '适合学习管理者如何建立 trust、align efforts、adapt communication style、listen actively 和 communicate with clarity。',
+        url: 'https://online.hbs.edu/blog/post/leadership-communication'
       },
       {
-        name: "MindTools: Stakeholder Management",
-        description: "利益相关方管理指南：如何识别、分析并有效地与项目的所有相关者沟通",
-        url: "https://www.mindtools.com/pages/article/newPPM_07.htm"
+        name: 'HBS Online — How to Give Feedback Effectively',
+        type: 'leadership article',
+        description: '反馈与建设性批评、绩效沟通、1:1 沟通',
+        why: '适合学习 constructive feedback、empathy、specific examples 和 improvement-focused language。',
+        url: 'https://online.hbs.edu/blog/post/how-to-give-feedback-effectively'
       },
       {
-        name: "Forbes: Communicating With Executives - 5 Tips For Success",
-        description: "高管沟通技巧：如何在极短的时间内抓住重点并赢得领导层的信任",
-        url: "https://www.forbes.com/sites/forbescoachescouncil/2018/06/15/five-tips-for-communicating-effectively-with-executives/"
+        name: 'HBS Online — How to Delegate Effectively',
+        type: 'leadership article',
+        description: '授权与任务分配、期望管理、团队协作',
+        why: '适合学习如何说明 desired outcome、expectation、timeline、resources、authority 和 check-in structure。',
+        url: 'https://online.hbs.edu/blog/post/how-to-delegate-effectively'
+      },
+      {
+        name: 'HBS Online — Navigate Difficult Conversations with Employees',
+        type: 'leadership article',
+        description: '棘手对话、绩效沟通、冲突处理',
+        why: '适合学习 trust-building、active listening、difficult conversation structure，以及如何在管理沟通中保持清楚和尊重。',
+        url: 'https://online.hbs.edu/blog/post/how-to-have-difficult-conversations-with-employees'
+      },
+      {
+        name: 'Harvard Business Publishing — How to Communicate for Impact',
+        type: 'leadership article / video',
+        description: '利益相关方更新、战略与决策汇报、高层沟通',
+        why: '适合学习 senior update、executive summary、decision briefing 和 high-impact communication。',
+        url: 'https://www.harvardbusiness.org/insight/how-to-communicate-for-impact/'
+      },
+      {
+        name: 'MindTools — What Is Stakeholder Management?',
+        type: 'management article',
+        description: '利益相关方更新、期望管理、战略与决策汇报',
+        why: '解释 stakeholder management 的核心：识别关键相关方，并用合适的方式沟通、维持关系和获得支持。很适合 alignment、expectation management 和 stakeholder communication 内容。',
+        url: 'https://www.mindtools.com/at2o1co/what-is-stakeholder-management/'
       }
     ]
   },
@@ -10890,19 +11488,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "Center for Creative Leadership: The SBI Feedback Model",
-        description: "官方详解：如何通过情景、行为、影响模型进行不带偏见的绩效反馈",
-        url: "https://www.ccl.org/articles/leading-effectively-articles/closing-the-gap-between-intent-and-impact/"
+        name: 'HBS Online — 8 Essential Leadership Communication Skills',
+        type: 'leadership article',
+        description: '战略汇报、利益相关方更新、管理沟通',
+        why: '适合学习管理者如何建立 trust、align efforts、adapt communication style、listen actively 和 communicate with clarity。',
+        url: 'https://online.hbs.edu/blog/post/leadership-communication'
       },
       {
-        name: "HBR: How to Give Feedback People Can Actually Use",
-        description: "哈佛商业评论：如何让你的反馈被听进去、被接受，并最终转化为实际的行为改变",
-        url: "https://hbr.org/2019/01/how-to-give-feedback-people-can-actually-use"
+        name: 'HBS Online — How to Give Feedback Effectively',
+        type: 'leadership article',
+        description: '反馈与建设性批评、绩效沟通、1:1 沟通',
+        why: '适合学习 constructive feedback、empathy、specific examples 和 improvement-focused language。',
+        url: 'https://online.hbs.edu/blog/post/how-to-give-feedback-effectively'
       },
       {
-        name: "Radical Candor: Be a Kick-Ass Boss Without Losing Your Humanity",
-        description: "Kim Scott 的“彻底坦诚”理论：如何在挑战下属的同时表达对他们的个人关怀",
-        url: "https://www.radicalcandor.com/the-book/"
+        name: 'HBS Online — How to Delegate Effectively',
+        type: 'leadership article',
+        description: '授权与任务分配、期望管理、团队协作',
+        why: '适合学习如何说明 desired outcome、expectation、timeline、resources、authority 和 check-in structure。',
+        url: 'https://online.hbs.edu/blog/post/how-to-delegate-effectively'
+      },
+      {
+        name: 'HBS Online — Navigate Difficult Conversations with Employees',
+        type: 'leadership article',
+        description: '棘手对话、绩效沟通、冲突处理',
+        why: '适合学习 trust-building、active listening、difficult conversation structure，以及如何在管理沟通中保持清楚和尊重。',
+        url: 'https://online.hbs.edu/blog/post/how-to-have-difficult-conversations-with-employees'
+      },
+      {
+        name: 'Harvard Business Publishing — How to Communicate for Impact',
+        type: 'leadership article / video',
+        description: '利益相关方更新、战略与决策汇报、高层沟通',
+        why: '适合学习 senior update、executive summary、decision briefing 和 high-impact communication。',
+        url: 'https://www.harvardbusiness.org/insight/how-to-communicate-for-impact/'
+      },
+      {
+        name: 'MindTools — What Is Stakeholder Management?',
+        type: 'management article',
+        description: '利益相关方更新、期望管理、战略与决策汇报',
+        why: '解释 stakeholder management 的核心：识别关键相关方，并用合适的方式沟通、维持关系和获得支持。很适合 alignment、expectation management 和 stakeholder communication 内容。',
+        url: 'https://www.mindtools.com/at2o1co/what-is-stakeholder-management/'
       }
     ]
   },
@@ -11350,19 +11975,46 @@ export const unitsContentData: Record<string, UnitContent> = {
     ],
     resources: [
       {
-        name: "HBR: A Guide to Strategic Communication",
-        description: "哈佛商业评论：如何在高层会议中通过结构化的语言推动重大决策的达成",
-        url: "https://hbr.org/2016/01/a-guide-to-strategic-communication"
+        name: 'HBS Online — 8 Essential Leadership Communication Skills',
+        type: 'leadership article',
+        description: '战略汇报、利益相关方更新、管理沟通',
+        why: '适合学习管理者如何建立 trust、align efforts、adapt communication style、listen actively 和 communicate with clarity。',
+        url: 'https://online.hbs.edu/blog/post/leadership-communication'
       },
       {
-        name: "McKinsey: The Art of the Strategy Briefing",
-        description: "麦肯锡指南：向董事会汇报时的关键逻辑、视觉呈现与心理博弈技巧",
-        url: "https://www.mckinsey.com/business-functions/strategy-and-corporate-finance/our-insights/the-art-of-the-strategy-briefing"
+        name: 'HBS Online — How to Give Feedback Effectively',
+        type: 'leadership article',
+        description: '反馈与建设性批评、绩效沟通、1:1 沟通',
+        why: '适合学习 constructive feedback、empathy、specific examples 和 improvement-focused language。',
+        url: 'https://online.hbs.edu/blog/post/how-to-give-feedback-effectively'
       },
       {
-        name: "MindTools: Scenario Analysis",
-        description: "决策工具：如何系统性地分析不同未来情景下的风险与收益并做出最佳选择",
-        url: "https://www.mindtools.com/pages/article/newTMC_02.htm"
+        name: 'HBS Online — How to Delegate Effectively',
+        type: 'leadership article',
+        description: '授权与任务分配、期望管理、团队协作',
+        why: '适合学习如何说明 desired outcome、expectation、timeline、resources、authority 和 check-in structure。',
+        url: 'https://online.hbs.edu/blog/post/how-to-delegate-effectively'
+      },
+      {
+        name: 'HBS Online — Navigate Difficult Conversations with Employees',
+        type: 'leadership article',
+        description: '棘手对话、绩效沟通、冲突处理',
+        why: '适合学习 trust-building、active listening、difficult conversation structure，以及如何在管理沟通中保持清楚和尊重。',
+        url: 'https://online.hbs.edu/blog/post/how-to-have-difficult-conversations-with-employees'
+      },
+      {
+        name: 'Harvard Business Publishing — How to Communicate for Impact',
+        type: 'leadership article / video',
+        description: '利益相关方更新、战略与决策汇报、高层沟通',
+        why: '适合学习 senior update、executive summary、decision briefing 和 high-impact communication。',
+        url: 'https://www.harvardbusiness.org/insight/how-to-communicate-for-impact/'
+      },
+      {
+        name: 'MindTools — What Is Stakeholder Management?',
+        type: 'management article',
+        description: '利益相关方更新、期望管理、战略与决策汇报',
+        why: '解释 stakeholder management 的核心：识别关键相关方，并用合适的方式沟通、维持关系和获得支持。很适合 alignment、expectation management 和 stakeholder communication 内容。',
+        url: 'https://www.mindtools.com/at2o1co/what-is-stakeholder-management/'
       }
     ]
   }

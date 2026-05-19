@@ -546,10 +546,10 @@ export default function UnitLearning() {
           </h3>
           <div className="grid gap-4 md:grid-cols-2">
             {unitContent.resources.map((res: any, i: number) => (
-              <a 
-                key={i} 
-                href={res.url} 
-                target="_blank" 
+              <a
+                key={i}
+                href={res.url}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col p-5 bg-card border rounded-2xl shadow-sm hover:shadow-md hover:border-primary/50 transition-all"
               >
@@ -557,8 +557,27 @@ export default function UnitLearning() {
                   <h4 className="font-bold text-primary group-hover:underline flex items-center gap-2">
                     {res.name} <ExternalLink className="w-3 h-3" />
                   </h4>
+                  {res.type && (
+                    <span className="ml-2 shrink-0 text-[10px] font-semibold bg-muted text-muted-foreground px-2 py-0.5 rounded-full">
+                      {res.type}
+                    </span>
+                  )}
                 </div>
-                <p className="text-xs text-muted-foreground font-medium mb-3">{res.description}</p>
+                {res.description && (
+                  <p className="text-xs font-semibold text-foreground/70 mb-1">
+                    <span className="text-muted-foreground font-bold uppercase tracking-wider text-[10px]">适合：</span>
+                    {res.description}
+                  </p>
+                )}
+                {res.why && (
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                    <span className="font-bold uppercase tracking-wider text-[10px]">推荐理由：</span>
+                    {res.why}
+                  </p>
+                )}
+                {!res.why && !res.description && (
+                  <p className="text-xs text-muted-foreground font-medium mb-3">{res.description}</p>
+                )}
                 <div className="mt-auto flex items-center gap-1 text-[10px] font-bold text-primary uppercase tracking-widest">
                   Explore Resource <ChevronRight className="w-3 h-3" />
                 </div>
